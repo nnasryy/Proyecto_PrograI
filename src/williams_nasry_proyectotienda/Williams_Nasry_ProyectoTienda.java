@@ -69,18 +69,15 @@ public class Williams_Nasry_ProyectoTienda {
         Scanner lea = new Scanner(System.in);
         
         System.out.println("*** VENTAS ***");
-        System.out.println("Productos: ");
-        System.out.println("Código 1. Azúcar - L.30");
-        System.out.println("Código 2. Avena - L.25");
-        System.out.println("Código 3. Trigo - L.32");
-        System.out.println("Código 4. Maíz - L.20");
         System.out.println(" *** Tipos de Cliente ***");
         System.out.println("Cliente Tipo A - Puede comprar cualquier producto. ");
-        System.out.println("Cliente Tipo B - Solo puede comprar Azúcar, Avena Y Trigo");
+        System.out.println("Cliente Tipo B - Solo puede comprar Azúcar, Avena o Trigo");
         System.out.println("Cliente Tipo C- Solo puede comprar Maíz");
-        System.out.println("*************************************************");
-        System.out.println("Ingrese el Tipo de Cliente que es: ");
-        System.out.println("");
+        System.out.println("                                                                                     ");
+        System.out.println("Ingrese 1 si es un Cliente Tipo A");
+        System.out.println("Ingrese 2 si es un Cliente Tipo B");
+        System.out.println("Ingrese 3 si es un Cliente Tipo C");
+        System.out.println("Ingrese el Tipo de Cliente que es dependiendo del producto :");
         int tipocliente = lea.nextInt();
          lea.nextLine(); 
         
