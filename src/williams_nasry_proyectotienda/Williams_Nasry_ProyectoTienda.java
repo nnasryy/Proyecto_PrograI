@@ -67,13 +67,31 @@ public class Williams_Nasry_ProyectoTienda {
 
     public static void ventas() {
         Scanner lea = new Scanner(System.in);
+        
         System.out.println("*** VENTAS ***");
         System.out.println("Productos: ");
         System.out.println("Código 1. Azúcar - L.30");
         System.out.println("Código 2. Avena - L.25");
         System.out.println("Código 3. Trigo - L.32");
         System.out.println("Código 4. Maíz - L.20");
+        
+        System.out.println(" *** Tipos de Cliente ***");
+        System.out.println("Cliente Tipo A - Puede comprar cualquier producto. ");
+        System.out.println("Cliente Tipo B - Solo puede comprar ");
+        System.out.println("Ingrese el tipo de cliente que es: ");
+        
         System.out.println("Ingrese el codigo del producto: ");
+        int codigo = lea.nextInt();
+        
+        if (codigo >=1 ||codigo <= 4 ){
+        
+        }else{
+        
+        } //
+        
+        
+        
+        
         System.out.println("Presione Enter para volver al Menú...");
         lea.nextLine();
     }
