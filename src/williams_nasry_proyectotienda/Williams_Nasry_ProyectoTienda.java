@@ -74,20 +74,33 @@ public class Williams_Nasry_ProyectoTienda {
         System.out.println("Código 2. Avena - L.25");
         System.out.println("Código 3. Trigo - L.32");
         System.out.println("Código 4. Maíz - L.20");
-        
         System.out.println(" *** Tipos de Cliente ***");
         System.out.println("Cliente Tipo A - Puede comprar cualquier producto. ");
-        System.out.println("Cliente Tipo B - Solo puede comprar ");
+        System.out.println("Cliente Tipo B - Solo puede comprar Azúcar, Avena Y Trigo");
+        System.out.println("Cliente Tipo C- Solo puede comprar Maíz");
         System.out.println("Ingrese el tipo de cliente que es: ");
+        int tipocliente = lea.nextInt();
+         lea.nextLine(); 
         
+        System.out.println("Productos: ");
+        System.out.println("Código 1. Azúcar - L.30");
+        System.out.println("Código 2. Avena - L.25");
+        System.out.println("Código 3. Trigo - L.32");
+        System.out.println("Código 4. Maíz - L.20");
         System.out.println("Ingrese el codigo del producto: ");
         int codigo = lea.nextInt();
+         lea.nextLine(); 
         
-        if (codigo >=1 ||codigo <= 4 ){
-        
+        if (codigo >=1 ||codigo <= 4 && tipocliente >=1 || tipocliente <=3 ){
+            if (codigo >= 1 || codigo <= 4 && tipocliente == 1){
+                System.out.println("Usted es Cliente Tipo A");
+         } else if (codigo >=1 || codigo < 4 && tipocliente == 2){
+                System.out.println("Usted es Cliente Tipo B");
+         }else if (codigo == 4 && tipocliente == 3)
+                System.out.println("Usted es Cliente Tipo C");
         }else{
-        
-        } //
+         lea.nextLine(); 
+        } 
         
         
         
