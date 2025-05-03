@@ -78,7 +78,9 @@ public class Williams_Nasry_ProyectoTienda {
         System.out.println("Cliente Tipo A - Puede comprar cualquier producto. ");
         System.out.println("Cliente Tipo B - Solo puede comprar Azúcar, Avena Y Trigo");
         System.out.println("Cliente Tipo C- Solo puede comprar Maíz");
-        System.out.println("Ingrese el tipo de cliente que es: ");
+        System.out.println("*************************************************");
+        System.out.println("Ingrese el Tipo de Cliente que es: ");
+        System.out.println("");
         int tipocliente = lea.nextInt();
          lea.nextLine(); 
         
