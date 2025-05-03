@@ -80,7 +80,8 @@ public class Williams_Nasry_ProyectoTienda {
         System.out.println("Ingrese el Tipo de Cliente que es dependiendo del producto :");
         int tipocliente = lea.nextInt();
          lea.nextLine(); 
-        
+         
+  
         System.out.println("Productos: ");
         System.out.println("Código 1. Azúcar - L.30");
         System.out.println("Código 2. Avena - L.25");
