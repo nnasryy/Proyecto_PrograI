@@ -117,8 +117,26 @@ do {
          
 } while (codigo < 1 || codigo > 4 );
         
+ 
+        
+        if (codigo >= 1 || codigo <= 4 && tipocliente == 1){
+            System.out.println("El tipo de cliente con el producto es válido.");
+        }else if (codigo >=1 || codigo < 4 && tipocliente == 2) {
+            System.out.println("El tipo de cliente con el producto es válido.");
+        }else if (codigo == 4 && tipocliente == 3){
+            System.out.println("El tipo de cliente con el producto es válido");
+        }else{
+            System.out.println("Error. Opción no válida, vuelva a intentar");
+        }
+        
+        System.out.println("Ingrese la cantidad en kilogramos que comprara: ");
+        double kilogramos = lea.nextDouble();
+        
+        
         System.out.println("Presione Enter para volver al Menú...");
-        lea.nextLine();
+        lea.nextLine(); 
+        
+        
     }
 
     public static void compras() {
