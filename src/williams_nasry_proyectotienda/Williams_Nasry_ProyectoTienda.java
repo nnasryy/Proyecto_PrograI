@@ -102,7 +102,7 @@ public class Williams_Nasry_ProyectoTienda {
         String respuesta;
         do {
             int codigo;
-
+       
             do {
                 System.out.println("Productos: ");
                 System.out.println("Código 1. Azúcar - L.30");
@@ -135,9 +135,19 @@ public class Williams_Nasry_ProyectoTienda {
 
             System.out.println("Desea Agregar otro producto?");
             respuesta = lea.nextLine();
-
+           
+          while (!respuesta.equals("si") && !respuesta.equals("no")){
+              System.out.println("Respuesta NO valida. Ingrese 'si' o 'no' ");
+              respuesta = lea.nextLine().toLowerCase();
+          }
+          
+          if (respuesta.equals("no")){
+          break;
+          }
+          
+            
         } while (respuesta.toLowerCase().equals("si"));
-
+        
         System.out.println("Presione Enter para volver al Menú...");
         lea.nextLine();
 
