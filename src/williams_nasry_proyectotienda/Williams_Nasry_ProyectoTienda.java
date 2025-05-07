@@ -1,6 +1,7 @@
 package williams_nasry_proyectotienda;
 
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class Williams_Nasry_ProyectoTienda {
 
@@ -68,6 +69,7 @@ public class Williams_Nasry_ProyectoTienda {
     public static void ventas() {
         Scanner lea = new Scanner(System.in);
         int tipocliente;
+         int codigo = 0;
         do {
             System.out.println("                                                                                     ");
             System.out.println("*** VENTAS ***");
@@ -100,10 +102,14 @@ public class Williams_Nasry_ProyectoTienda {
         }
 
         String respuesta;
+        
         do {
-            int codigo;
-       
+   
+          boolean codigovalido;
+          
             do {
+                codigovalido = true;
+                try {
                 System.out.println("Productos: ");
                 System.out.println("Código 1. Azúcar - L.30");
                 System.out.println("Código 2. Avena - L.25");
@@ -117,7 +123,12 @@ public class Williams_Nasry_ProyectoTienda {
                     System.out.println("Error. Opción no válida, vuelva a intentar");
                 }
 
-            } while (codigo < 1 || codigo > 4);
+                } catch (InputMismatchException e) {
+                    System.out.println("Error. Codigo no valido");
+                    lea.nextLine();
+                }
+                
+            } while (!codigovalido);
 
             if (codigo >= 1 && codigo <= 4 && tipocliente == 1) {
                 System.out.println("El tipo de cliente con el producto es válido.");
@@ -145,7 +156,7 @@ public class Williams_Nasry_ProyectoTienda {
           break;
           }
           
-            
+         //************************************************************************  
         } while (respuesta.toLowerCase().equals("si"));
         
         System.out.println("Presione Enter para volver al Menú...");
