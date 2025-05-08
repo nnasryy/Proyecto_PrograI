@@ -54,6 +54,8 @@ public class Williams_Nasry_ProyectoTienda {
 
         lea.close();
     }
+    
+    /////////////////////////////////////////////////////////////////////////////////////
 
     public static void caja() {
         Scanner lea = new Scanner(System.in);
@@ -66,10 +68,16 @@ public class Williams_Nasry_ProyectoTienda {
         lea.nextLine();
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////
+    
     public static void ventas() {
         Scanner lea = new Scanner(System.in);
-        int tipocliente;
-         int codigo = 0;
+         int codigo = 0, tipocliente;
+         double kilogramos =0, precioAzucar = 30.00, precioAvena = 25.00, precioTrigo = 32.00, precioMaiz = 20.00,
+                 azucarKg = 0, avenaKg = 0, trigoKg = 0, maizKg = 0, totalAzucar = 0, 
+                 totalAvena = 0, totalTrigo = 0, totalMaiz = 0;
+                 
+                 
         do {
             System.out.println("                                                                                     ");
             System.out.println("*** VENTAS ***");
@@ -102,6 +110,8 @@ public class Williams_Nasry_ProyectoTienda {
         }
 
         String respuesta;
+         
+    //Productos
         
         do {
    
@@ -127,9 +137,10 @@ public class Williams_Nasry_ProyectoTienda {
                     System.out.println("Error. Codigo no valido");
                     lea.nextLine();
                 }
-                
+               
             } while (!codigovalido);
-
+            
+             //Validación de opción ingresada
             if (codigo >= 1 && codigo <= 4 && tipocliente == 1) {
                 System.out.println("El tipo de cliente con el producto es válido.");
             } else if (codigo >= 1 && codigo < 4 && tipocliente == 2) {
@@ -139,11 +150,13 @@ public class Williams_Nasry_ProyectoTienda {
             } else {
                 System.out.println("Error. Opción no válida, vuelva a intentar");
             }
-
+        
+            //Kilogramos 
             System.out.println("Ingrese la cantidad en kilogramos que comprara: ");
-            double kilogramos = lea.nextDouble();
+             kilogramos = lea.nextDouble();
             lea.nextLine();
 
+            //Productos extra
             System.out.println("Desea Agregar otro producto?");
             respuesta = lea.nextLine();
            
@@ -155,15 +168,46 @@ public class Williams_Nasry_ProyectoTienda {
           if (respuesta.equals("no")){
           break;
           }
-          
-         //************************************************************************  
-        } while (respuesta.toLowerCase().equals("si"));
+   } while (respuesta.toLowerCase().equals("si"));
+        
+        // Facturación
+     
+       if (codigo == 1){
+           azucarKg += kilogramos;
+           totalAzucar += kilogramos * precioAzucar;
+       } else if (codigo == 2) {
+       avenaKg += kilogramos;
+       totalAvena += kilogramos * precioAvena;
+       }else if (codigo == 3){
+           trigoKg += kilogramos;
+           totalTrigo += kilogramos * precioTrigo;
+       }else if(codigo == 4){
+       maizKg += kilogramos;
+       totalMaiz += kilogramos * precioMaiz;
+       }
+       
+
+       System.out.println("****FACTURA*****"); 
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         
         System.out.println("Presione Enter para volver al Menú...");
         lea.nextLine();
 
     }
 
+    
+    ///////////////////////////////////////////////////////////////////////////////
+    
     public static void compras() {
         Scanner lea = new Scanner(System.in);
         System.out.println("*** COMPRAS ***");
