@@ -72,7 +72,8 @@ public class Williams_Nasry_ProyectoTienda {
     
     public static void ventas() {
         Scanner lea = new Scanner(System.in);
-         int codigo = 0, tipocliente;
+         int codigo = 0, tipocliente, productos = 0;
+         String producto="";
          double kilogramos =0, precioAzucar = 30.00, precioAvena = 25.00, precioTrigo = 32.00, precioMaiz = 20.00,
                  azucarKg = 0, avenaKg = 0, trigoKg = 0, maizKg = 0, totalAzucar = 0, 
                  totalAvena = 0, totalTrigo = 0, totalMaiz = 0;
@@ -156,6 +157,23 @@ public class Williams_Nasry_ProyectoTienda {
              kilogramos = lea.nextDouble();
             lea.nextLine();
 
+                   if (codigo == 1){
+           producto = "Azucar";
+           azucarKg += kilogramos;
+           totalAzucar += kilogramos * precioAzucar;
+       } else if (codigo == 2) {
+           producto = "Avena";
+       avenaKg += kilogramos;
+       totalAvena += kilogramos * precioAvena;
+       }else if (codigo == 3){
+           producto = "Trigo";
+           trigoKg += kilogramos;
+           totalTrigo += kilogramos * precioTrigo;
+       }else if(codigo == 4){
+           producto = "Maiz";
+       maizKg += kilogramos;
+       totalMaiz += kilogramos * precioMaiz;
+       }
             //Productos extra
             System.out.println("Desea Agregar otro producto?");
             respuesta = lea.nextLine();
@@ -171,31 +189,24 @@ public class Williams_Nasry_ProyectoTienda {
    } while (respuesta.toLowerCase().equals("si"));
         
         // Facturación
-     
-       if (codigo == 1){
-           azucarKg += kilogramos;
-           totalAzucar += kilogramos * precioAzucar;
-       } else if (codigo == 2) {
-       avenaKg += kilogramos;
-       totalAvena += kilogramos * precioAvena;
-       }else if (codigo == 3){
-           trigoKg += kilogramos;
-           totalTrigo += kilogramos * precioTrigo;
-       }else if(codigo == 4){
-       maizKg += kilogramos;
-       totalMaiz += kilogramos * precioMaiz;
-       }
-    
-
-if (codigo == 1) {
-String producto = "Azucar";
-}
-       
-
-       
+      
+//
        System.out.println("****FACTURA*****"); 
-       
+      if (azucarKg > 0){
+           System.out.println("Azucar: "+azucarKg + "kg" + " - Total: L."+totalAzucar);
+       }
+     if (avenaKg > 0 ){
+         System.out.println("Avena: "+avenaKg + "kg" + " - Total: L."+totalAvena);
+     }
+     if (trigoKg > 0){
+         System.out.println("Trigo: "+trigoKg + "kg" + " - Total: L."+totalTrigo);
+     }
+     if (maizKg > 0){
+         System.out.println("Maiz: "+maizKg + "kg" + " - Total: L." +totalMaiz);
+     }
         
+     double totalGeneral = totalAzucar + totalAvena + totalTrigo + totalMaiz;
+        System.out.println("TOTAL: L."+ totalGeneral);
         
        
         
