@@ -85,7 +85,7 @@ public class Williams_Nasry_ProyectoTienda {
             System.out.println(" *** Tipos de Cliente ***");
             System.out.println("Cliente Tipo A - Puede comprar cualquier producto. ");
             System.out.println("Cliente Tipo B - Solo puede comprar Azúcar, Avena o Trigo");
-            System.out.println("Cliente Tipo C- Solo puede comprar Maíz");
+            System.out.println("Cliente Tipo C- Solo puede comprar Maiz");
             System.out.println("                                                                                     ");
             System.out.println("Ingrese 1 si es un Cliente Tipo A");
             System.out.println("Ingrese 2 si es un Cliente Tipo B");
@@ -120,10 +120,10 @@ public class Williams_Nasry_ProyectoTienda {
                 codigovalido = true;
                 try {
                     System.out.println("Productos: ");
-                    System.out.println("Código 1. Azúcar - L.30");
-                    System.out.println("Código 2. Avena - L.25");
-                    System.out.println("Código 3. Trigo - L.32");
-                    System.out.println("Código 4. Maíz - L.20");
+                    System.out.println("Codigo 1. Azúcar - L.30");
+                    System.out.println("Codigo 2. Avena - L.25");
+                    System.out.println("Codigo 3. Trigo - L.32");
+                    System.out.println("Codigo 4. Maíz - L.20");
                     System.out.println("Ingrese el codigo del producto: ");
                     codigo = lea.nextInt();
                     lea.nextLine();
@@ -209,23 +209,22 @@ public class Williams_Nasry_ProyectoTienda {
         System.out.println("Compras Mayor o Igual a L.5,000 - 10%");
         System.out.println();
         if (subtotal >= 1000) {
-            totalDescuento = (subtotal-(subtotal * 0.5));
+            totalDescuento = (subtotal - (subtotal * 0.5));
             System.out.println("Tu Compra Aplica a el 5% de Descuento");
 
         } else if (subtotal >= 5000) {
-             totalDescuento = (subtotal - (subtotal * 0.10));
+            totalDescuento = (subtotal - (subtotal * 0.10));
             System.out.println("Tu Compra Aplica a el 10% de Descuento");
         } else if (subtotal < 1000) {
             System.out.println("No Aplica Descuento");
             totalDescuento = (subtotal * 1);
         }
 
-         double totalventa =( totalDescuento * 0.7);
-         System.out.println("TOTAL: L."+ totalventa);
-        
+        double totalventa = (totalDescuento * 0.7);
+        System.out.println("TOTAL: L." + totalventa);
+
         System.out.println("Presione Enter para volver al Menú...");
         lea.nextLine();
-        
 
     }
 
@@ -234,6 +233,35 @@ public class Williams_Nasry_ProyectoTienda {
     public static void compras() {
         Scanner lea = new Scanner(System.in);
         System.out.println("*** COMPRAS ***");
+        System.out.println();
+        System.out.println("*** Menu de Proveedores ***");
+        System.out.println("1. Proveedor A: Vende Azucar y Maiz.");
+        System.out.println("2. Proveedor B: Vende Avena y Trigo");
+        System.out.println("3. Proveedor C: Vende solamente Avena");
+        System.out.println("Ingrese un numero del 1 al 3 para seleccionar el tipo de proveedor: ");
+        int proveedor = lea.nextInt();
+        System.out.println("*** Menu de Productos ***");
+        System.out.println("Codigo 1. Azucar - L. 25");
+        System.out.println("Codigo 2. Avena (Proveedor B) - L.20");
+        System.out.println("Codigo 3. Avena (Proveedor C) - L.22");
+        System.out.println("Codigo 4. Trigo - L.30");
+        System.out.println("Codigo 5. Maiz - L.18");
+        int comPro = lea.nextInt();
+        
+        if (proveedor == 1 && comPro == 1 || comPro == 5){
+            System.out.println("Ha indicado una compra de Proveedor A");
+        }else if(proveedor == 2 && comPro == 2 || comPro == 4){
+        System.out.println("Ha indicado una compra de Proveedor B");
+        }else if(proveedor == 3 && comPro == 3){
+            System.out.println("Ha indicado una compra de Proveedor C");
+        }
+                
+        
+        
+        
+        
+        
+
         System.out.println("Presione Enter para volver al Menú...");
         lea.nextLine();
     }
