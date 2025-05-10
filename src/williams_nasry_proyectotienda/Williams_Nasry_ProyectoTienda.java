@@ -185,8 +185,14 @@ public class Williams_Nasry_ProyectoTienda {
        maizKg += kilogramos;
        totalMaiz += kilogramos * precioMaiz;
        }
+    
+
+if (codigo == 1) {
+String producto = "Azucar";
+}
        
 
+       
        System.out.println("****FACTURA*****"); 
        
         
