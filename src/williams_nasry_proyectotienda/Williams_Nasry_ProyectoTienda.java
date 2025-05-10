@@ -187,6 +187,7 @@ public class Williams_Nasry_ProyectoTienda {
         } while (respuesta.toLowerCase().equals("si"));
 
         // Facturación
+        System.out.println();
         System.out.println("****FACTURA*****");
         if (azucarKg > 0) {
             System.out.println("Azucar: " + azucarKg + "kg" + " - Total: L." + totalAzucar);
@@ -202,27 +203,29 @@ public class Williams_Nasry_ProyectoTienda {
         }
 
         double subtotal = totalAzucar + totalAvena + totalTrigo + totalMaiz;
+        System.out.println();
         System.out.println("Descuentos:");
         System.out.println("Compra Mayor o Igual a L.1,000 - 5%");
         System.out.println("Compras Mayor o Igual a L.5,000 - 10%");
         System.out.println();
         if (subtotal >= 1000) {
-            totalDescuento = (subtotal-(subtotal * 5 / 100));
+            totalDescuento = (subtotal-(subtotal * 0.5));
             System.out.println("Tu Compra Aplica a el 5% de Descuento");
 
         } else if (subtotal >= 5000) {
-             totalDescuento = (subtotal - (subtotal * 10 / 100));
+             totalDescuento = (subtotal - (subtotal * 0.10));
             System.out.println("Tu Compra Aplica a el 10% de Descuento");
         } else if (subtotal < 1000) {
             System.out.println("No Aplica Descuento");
             totalDescuento = (subtotal * 1);
         }
 
-         double totalventa =( totalDescuento * 7 /100);
+         double totalventa =( totalDescuento * 0.7);
          System.out.println("TOTAL: L."+ totalventa);
         
         System.out.println("Presione Enter para volver al Menú...");
         lea.nextLine();
+        
 
     }
 
