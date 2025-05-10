@@ -54,7 +54,7 @@ public class Williams_Nasry_ProyectoTienda {
 
         lea.close();
     }
-    
+
     /////////////////////////////////////////////////////////////////////////////////////
 
     public static void caja() {
@@ -72,13 +72,12 @@ public class Williams_Nasry_ProyectoTienda {
     
     public static void ventas() {
         Scanner lea = new Scanner(System.in);
-         int codigo = 0, tipocliente, productos = 0;
-         String producto="";
-         double kilogramos =0, precioAzucar = 30.00, precioAvena = 25.00, precioTrigo = 32.00, precioMaiz = 20.00,
-                 azucarKg = 0, avenaKg = 0, trigoKg = 0, maizKg = 0, totalAzucar = 0, 
-                 totalAvena = 0, totalTrigo = 0, totalMaiz = 0;
-                 
-                 
+        int codigo = 0, tipocliente, productos = 0;
+        String producto = "";
+        double kilogramos = 0, precioAzucar = 30.00, precioAvena = 25.00, precioTrigo = 32.00, precioMaiz = 20.00,
+                azucarKg = 0, avenaKg = 0, trigoKg = 0, maizKg = 0, totalAzucar = 0,
+                totalAvena = 0, totalTrigo = 0, totalMaiz = 0, totalDescuento = 0;
+
         do {
             System.out.println("                                                                                     ");
             System.out.println("*** VENTAS ***");
@@ -111,37 +110,36 @@ public class Williams_Nasry_ProyectoTienda {
         }
 
         String respuesta;
-         
-    //Productos
-        
+
+        //Productos
         do {
-   
-          boolean codigovalido;
-          
+
+            boolean codigovalido;
+
             do {
                 codigovalido = true;
                 try {
-                System.out.println("Productos: ");
-                System.out.println("Código 1. Azúcar - L.30");
-                System.out.println("Código 2. Avena - L.25");
-                System.out.println("Código 3. Trigo - L.32");
-                System.out.println("Código 4. Maíz - L.20");
-                System.out.println("Ingrese el codigo del producto: ");
-                codigo = lea.nextInt();
-                lea.nextLine();
+                    System.out.println("Productos: ");
+                    System.out.println("Código 1. Azúcar - L.30");
+                    System.out.println("Código 2. Avena - L.25");
+                    System.out.println("Código 3. Trigo - L.32");
+                    System.out.println("Código 4. Maíz - L.20");
+                    System.out.println("Ingrese el codigo del producto: ");
+                    codigo = lea.nextInt();
+                    lea.nextLine();
 
-                if (codigo < 1 || codigo > 4) {
-                    System.out.println("Error. Opción no válida, vuelva a intentar");
-                }
+                    if (codigo < 1 || codigo > 4) {
+                        System.out.println("Error. Opción no válida, vuelva a intentar");
+                    }
 
                 } catch (InputMismatchException e) {
                     System.out.println("Error. Codigo no valido");
                     lea.nextLine();
                 }
-               
+
             } while (!codigovalido);
-            
-             //Validación de opción ingresada
+
+            //Validación de opción ingresada
             if (codigo >= 1 && codigo <= 4 && tipocliente == 1) {
                 System.out.println("El tipo de cliente con el producto es válido.");
             } else if (codigo >= 1 && codigo < 4 && tipocliente == 2) {
@@ -151,79 +149,83 @@ public class Williams_Nasry_ProyectoTienda {
             } else {
                 System.out.println("Error. Opción no válida, vuelva a intentar");
             }
-        
+
             //Kilogramos 
             System.out.println("Ingrese la cantidad en kilogramos que comprara: ");
-             kilogramos = lea.nextDouble();
+            kilogramos = lea.nextDouble();
             lea.nextLine();
 
-                   if (codigo == 1){
-           producto = "Azucar";
-           azucarKg += kilogramos;
-           totalAzucar += kilogramos * precioAzucar;
-       } else if (codigo == 2) {
-           producto = "Avena";
-       avenaKg += kilogramos;
-       totalAvena += kilogramos * precioAvena;
-       }else if (codigo == 3){
-           producto = "Trigo";
-           trigoKg += kilogramos;
-           totalTrigo += kilogramos * precioTrigo;
-       }else if(codigo == 4){
-           producto = "Maiz";
-       maizKg += kilogramos;
-       totalMaiz += kilogramos * precioMaiz;
-       }
+            if (codigo == 1) {
+                producto = "Azucar";
+                azucarKg += kilogramos;
+                totalAzucar += kilogramos * precioAzucar;
+            } else if (codigo == 2) {
+                producto = "Avena";
+                avenaKg += kilogramos;
+                totalAvena += kilogramos * precioAvena;
+            } else if (codigo == 3) {
+                producto = "Trigo";
+                trigoKg += kilogramos;
+                totalTrigo += kilogramos * precioTrigo;
+            } else if (codigo == 4) {
+                producto = "Maiz";
+                maizKg += kilogramos;
+                totalMaiz += kilogramos * precioMaiz;
+            }
             //Productos extra
             System.out.println("Desea Agregar otro producto?");
             respuesta = lea.nextLine();
-           
-          while (!respuesta.equals("si") && !respuesta.equals("no")){
-              System.out.println("Respuesta NO valida. Ingrese 'si' o 'no' ");
-              respuesta = lea.nextLine().toLowerCase();
-          }
-          
-          if (respuesta.equals("no")){
-          break;
-          }
-   } while (respuesta.toLowerCase().equals("si"));
-        
+
+            while (!respuesta.equals("si") && !respuesta.equals("no")) {
+                System.out.println("Respuesta NO valida. Ingrese 'si' o 'no' ");
+                respuesta = lea.nextLine().toLowerCase();
+            }
+
+            if (respuesta.equals("no")) {
+                break;
+            }
+        } while (respuesta.toLowerCase().equals("si"));
+
         // Facturación
-      
-//
-       System.out.println("****FACTURA*****"); 
-      if (azucarKg > 0){
-           System.out.println("Azucar: "+azucarKg + "kg" + " - Total: L."+totalAzucar);
-       }
-     if (avenaKg > 0 ){
-         System.out.println("Avena: "+avenaKg + "kg" + " - Total: L."+totalAvena);
-     }
-     if (trigoKg > 0){
-         System.out.println("Trigo: "+trigoKg + "kg" + " - Total: L."+totalTrigo);
-     }
-     if (maizKg > 0){
-         System.out.println("Maiz: "+maizKg + "kg" + " - Total: L." +totalMaiz);
-     }
-        
-     double totalGeneral = totalAzucar + totalAvena + totalTrigo + totalMaiz;
-        System.out.println("TOTAL: L."+ totalGeneral);
-        
-       
-        
-        
-        
-        
-        
-        
-        
-        
+        System.out.println("****FACTURA*****");
+        if (azucarKg > 0) {
+            System.out.println("Azucar: " + azucarKg + "kg" + " - Total: L." + totalAzucar);
+        }
+        if (avenaKg > 0) {
+            System.out.println("Avena: " + avenaKg + "kg" + " - Total: L." + totalAvena);
+        }
+        if (trigoKg > 0) {
+            System.out.println("Trigo: " + trigoKg + "kg" + " - Total: L." + totalTrigo);
+        }
+        if (maizKg > 0) {
+            System.out.println("Maiz: " + maizKg + "kg" + " - Total: L." + totalMaiz);
+        }
+
+        double subtotal = totalAzucar + totalAvena + totalTrigo + totalMaiz;
+        System.out.println("Descuentos:");
+        System.out.println("Compra Mayor o Igual a L.1,000 - 5%");
+        System.out.println("Compras Mayor o Igual a L.5,000 - 10%");
+        System.out.println();
+        if (subtotal >= 1000) {
+            totalDescuento = (subtotal-(subtotal * 5 / 100));
+            System.out.println("Tu Compra Aplica a el 5% de Descuento");
+
+        } else if (subtotal >= 5000) {
+             totalDescuento = (subtotal - (subtotal * 10 / 100));
+            System.out.println("Tu Compra Aplica a el 10% de Descuento");
+        } else if (subtotal < 1000) {
+            System.out.println("No Aplica Descuento");
+            totalDescuento = (subtotal * 1);
+        }
+
+         double totalventa =( totalDescuento * 7 /100);
+         System.out.println("TOTAL: L."+ totalventa);
         
         System.out.println("Presione Enter para volver al Menú...");
         lea.nextLine();
 
     }
 
-    
     ///////////////////////////////////////////////////////////////////////////////
     
     public static void compras() {
