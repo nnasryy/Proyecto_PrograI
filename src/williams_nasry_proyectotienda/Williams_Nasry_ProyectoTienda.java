@@ -186,6 +186,7 @@ public class Williams_Nasry_ProyectoTienda {
             }
         } while (respuesta.toLowerCase().equals("si"));
 
+        
         // Facturación
         System.out.println();
         System.out.println("****FACTURA*****");
@@ -232,6 +233,10 @@ public class Williams_Nasry_ProyectoTienda {
     
     public static void compras() {
         Scanner lea = new Scanner(System.in);
+        String nombreproducto = "";
+        int proveedor = 0, azucar = 25, avenab = 20, avenac = 22, trigo = 30, maiz = 18;
+        double kilos = 0;
+        do{
         System.out.println("*** COMPRAS ***");
         System.out.println();
         System.out.println("*** Menu de Proveedores ***");
@@ -239,25 +244,39 @@ public class Williams_Nasry_ProyectoTienda {
         System.out.println("2. Proveedor B: Vende Avena y Trigo");
         System.out.println("3. Proveedor C: Vende solamente Avena");
         System.out.println("Ingrese un numero del 1 al 3 para seleccionar el tipo de proveedor: ");
-        int proveedor = lea.nextInt();
+         proveedor = lea.nextInt();
+        
+        if (proveedor < 1 || proveedor > 3){
+            System.out.println("Error. Ingrese una opcion del 1-3");
+        }
+        
+        }while(proveedor < 1 || proveedor > 3);
+        
         System.out.println("*** Menu de Productos ***");
         System.out.println("Codigo 1. Azucar - L. 25");
         System.out.println("Codigo 2. Avena (Proveedor B) - L.20");
         System.out.println("Codigo 3. Avena (Proveedor C) - L.22");
         System.out.println("Codigo 4. Trigo - L.30");
         System.out.println("Codigo 5. Maiz - L.18");
-        int comPro = lea.nextInt();
+        int comPro = lea.nextInt(); //int compra de producto
         
+        //verificación de proveedor con producto 
         if (proveedor == 1 && comPro == 1 || comPro == 5){
             System.out.println("Ha indicado una compra de Proveedor A");
         }else if(proveedor == 2 && comPro == 2 || comPro == 4){
         System.out.println("Ha indicado una compra de Proveedor B");
         }else if(proveedor == 3 && comPro == 3){
             System.out.println("Ha indicado una compra de Proveedor C");
+        }else{
+            System.out.println("Sus opciones no son validas");
         }
-                
+                //Kilogramos 
+        System.out.println("Ingrese la cantidad que comprara en Kilogramos:");
+        kilos = lea.nextDouble();
         
+        if (comPro == 1 ){
         
+        }
         
         
         
@@ -265,6 +284,8 @@ public class Williams_Nasry_ProyectoTienda {
         System.out.println("Presione Enter para volver al Menú...");
         lea.nextLine();
     }
+    
+    ///////////////////////////////////////////////////////////////////////
 
     public static void reportes() {
         Scanner lea = new Scanner(System.in);
