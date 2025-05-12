@@ -6,6 +6,7 @@ import java.util.InputMismatchException;
 public class Williams_Nasry_ProyectoTienda {
 
     public static void main(String[] args) {
+        double monto = 0, totalventa =0;
         Scanner lea = new Scanner(System.in);
         String entrada;
         int opcionmenu = 0;
@@ -235,8 +236,7 @@ public class Williams_Nasry_ProyectoTienda {
         Scanner lea = new Scanner(System.in);
         String nombreproducto = "";
         int proveedor = 0, azucar = 25, avenab = 20, avenac = 22, trigo = 30, maiz = 18;
-        double kilos = 0, azucarKilos = 0, avenabKilos = 0,avenacKilos = 0, trigoKilos = 0, maizKilos = 0, azucarTotal = 0, 
-                avenabTotal = 0, avenac = 0, trigoTotal = 0, maizTotal = 0;
+        double kilos = 0, azucarKilos = 0, avenabKilos = 0,avenacKilos = 0, trigoKilos = 0, maizKilos = 0, compraTotal = 0;
         do{
         System.out.println("*** COMPRAS ***");
         System.out.println();
@@ -269,7 +269,7 @@ public class Williams_Nasry_ProyectoTienda {
         }else if(proveedor == 3 && comPro == 3){
             System.out.println("Ha indicado una compra de Proveedor C");
         }else{
-            System.out.println("Sus opciones no son validas");
+            System.out.println("Proveedor no vende dicho Producto");
         }
                 //Kilogramos 
         System.out.println("Ingrese la cantidad que comprara en Kilogramos:");
@@ -278,29 +278,31 @@ public class Williams_Nasry_ProyectoTienda {
         if (comPro == 1 ){
         nombreproducto  = "Azucar";
         azucarKilos += kilos;
-        azucarTotal += kilos * azucar;
+        compraTotal += kilos * azucar;
         }else if (comPro == 2){
         nombreproducto = "Avena, Proveedor B";
         avenabKilos += kilos;
-        avenabTotal += kilos * avenabKilos;
+        compraTotal += kilos * avenab;
         }else if(comPro == 3){
          nombreproducto = "Avena, Proveedor C";
          avenacKilos += kilos;
-         avenabTotal += kilos * avenacKilos;
+         compraTotal += kilos * avenac;
         }else if (comPro == 4){
            nombreproducto = "Trigo";
           trigoKilos += kilos;
-          trigoTotal += kilos * azucar;
+          compraTotal += kilos * azucar;
         }else if (comPro == 5){
         nombreproducto = "Maiz";
         maizKilos += kilos;
-        maizTotal += kilos * maiz;
+        compraTotal += kilos * maiz;
         }
         
         System.out.println("*** Total de la Compra ***");
-        
+        System.out.println("Nombre del producto: " + nombreproducto);
+        System.out.println("Total: L." + compraTotal);        
 
         System.out.println("Presione Enter para volver al Menú...");
+        lea.nextLine();
         lea.nextLine();
     }
     
