@@ -235,7 +235,8 @@ public class Williams_Nasry_ProyectoTienda {
         Scanner lea = new Scanner(System.in);
         String nombreproducto = "";
         int proveedor = 0, azucar = 25, avenab = 20, avenac = 22, trigo = 30, maiz = 18;
-        double kilos = 0;
+        double kilos = 0, azucarKilos = 0, avenabKilos = 0,avenacKilos = 0, trigoKilos = 0, maizKilos = 0, azucarTotal = 0, 
+                avenabTotal = 0, avenac = 0, trigoTotal = 0, maizTotal = 0;
         do{
         System.out.println("*** COMPRAS ***");
         System.out.println();
@@ -275,10 +276,28 @@ public class Williams_Nasry_ProyectoTienda {
         kilos = lea.nextDouble();
         
         if (comPro == 1 ){
-        
+        nombreproducto  = "Azucar";
+        azucarKilos += kilos;
+        azucarTotal += kilos * azucar;
+        }else if (comPro == 2){
+        nombreproducto = "Avena, Proveedor B";
+        avenabKilos += kilos;
+        avenabTotal += kilos * avenabKilos;
+        }else if(comPro == 3){
+         nombreproducto = "Avena, Proveedor C";
+         avenacKilos += kilos;
+         avenabTotal += kilos * avenacKilos;
+        }else if (comPro == 4){
+           nombreproducto = "Trigo";
+          trigoKilos += kilos;
+          trigoTotal += kilos * azucar;
+        }else if (comPro == 5){
+        nombreproducto = "Maiz";
+        maizKilos += kilos;
+        maizTotal += kilos * maiz;
         }
         
-        
+        System.out.println("*** Total de la Compra ***");
         
 
         System.out.println("Presione Enter para volver al Menú...");
