@@ -10,15 +10,11 @@ public class Williams_Nasry_ProyectoTienda {
         Scanner lea = new Scanner(System.in);
         String entrada, nombreproductoCompra = "", producto = "";
         int opcionmenu = 0, proveedor = 0, codigo = 0, tipocliente = 0;
-        double precioAzucarCompra = 25.0, precioAvenaBCompra = 20.0, precioAvenaCCompra = 22.0, precioTrigoCompra = 30.0, precioMaizCompra = 18.0, 
-        kilos =0,  azucarKilosCompra = 0,  avenabKilosCompra = 0, avenacKilosCompra = 0, trigoKilosCompra = 0, maizKilosCompra = 0,  compraTotal = 0, kilogramos = 0,
-              precioAzucarVenta = 30.00, precioAvenaVenta = 25.00, precioTrigoVenta = 32.00, precioMaizVenta = 20.00,azucarKilosVenta = 0, avenaKilosVenta = 0,
-                trigoKilosVenta = 0, maizKilosVenta = 0,  totalAzucar = 0, totalAvena = 0,
-                totalTrigo = 0, totalMaiz = 0;
-                      
-                      
-                        
-                        
+        double precioAzucarCompra = 25.0, precioAvenaBCompra = 20.0, precioAvenaCCompra = 22.0, precioTrigoCompra = 30.0, precioMaizCompra = 18.0,
+                kilos = 0, azucarKilosCompra = 0, avenabKilosCompra = 0, avenacKilosCompra = 0, trigoKilosCompra = 0, maizKilosCompra = 0, compraTotal = 0, kilogramos = 0,
+                precioAzucarVenta = 30.00, precioAvenaVenta = 25.00, precioTrigoVenta = 32.00, precioMaizVenta = 20.00, azucarKilosVenta = 0, avenaKilosVenta = 0,
+                trigoKilosVenta = 0, maizKilosVenta = 0, totalAzucar = 0, totalAvena = 0,
+                totalTrigo = 0, totalMaiz = 0, stockAzucar = 0, stockAvena = 0, stockTrigo = 0, stockMaiz = 0;
 
         do {
             System.out.println("**** MENU ****");
@@ -39,28 +35,32 @@ public class Williams_Nasry_ProyectoTienda {
                 opcionmenu = entrada.charAt(0) - '0';
 
                 switch (opcionmenu) {
+
                     //CAJA
                     case 1:
                         System.out.println("*** CAJA ***");
-                        System.out.print("Su monto actual: "+monto);
+                        System.out.print("Su monto actual: " + monto);
                         System.out.print("Ingrese el monto en HNL que anadira a Caja: ");
                         try {
-                            monto = lea.nextDouble();
+                            double nuevoMonto = lea.nextDouble();
+                            if (nuevoMonto < 0) {
+                                System.out.println("Error. Valor Ingresado No Valido.");
+                            } else {
+                                monto += nuevoMonto;
+                            }
                         } catch (InputMismatchException e) {
-                            System.out.println("Entrada invalida. Por favor ingrese un numero.");
+                            System.out.println("Error. Valor Ingresado No Valido.");
                             lea.nextLine();
-                            monto = 0;
                         }
+
                         lea.nextLine();
                         System.out.println("Su monto de caja actual es de: L." + monto);
                         System.out.println("Presione Enter para volver al Menu...");
                         lea.nextLine();
                         break;
-                        
+
                     // VENTAS 
-                        
                     case 2:
-                      
 
                         do {
                             System.out.println();
@@ -142,24 +142,58 @@ public class Williams_Nasry_ProyectoTienda {
                                 lea.nextLine();
                                 kilogramos = 0;
                             }
-
+//Kilogramos
                             if (kilogramos > 0) {
-                                if (codigo == 1) {
-                                    producto = "Azucar";
-                                    azucarKilosVenta += kilogramos;
-                                    totalAzucar += kilogramos * precioAzucarVenta;
-                                } else if (codigo == 2) {
-                                    producto = "Avena";
-                                    avenaKilosVenta += kilogramos;
-                                    totalAvena += kilogramos * precioAvenaVenta;
-                                } else if (codigo == 3) {
-                                    producto = "Trigo";
-                                    trigoKilosVenta += kilogramos;
-                                    totalTrigo += kilogramos * precioTrigoVenta;
-                                } else if (codigo == 4) {
-                                    producto = "Maiz";
-                                    maizKilosVenta += kilogramos;
-                                    totalMaiz += kilogramos * precioMaizVenta;
+                                boolean ventaValida = false;
+                                switch (codigo) {
+                                    case 1:
+                                        if (kilogramos <= stockAzucar) {
+                                            producto = "Azucar";
+                                            azucarKilosVenta += kilogramos;
+                                            totalAzucar += kilogramos * precioAzucarVenta;
+                                            stockAzucar -= kilogramos;
+                                            ventaValida = true;
+                                        } else {
+                                            System.out.println("No hay suficiente stock de Azúcar.");
+                                        }
+                                        break;
+                                    case 2:
+                                        if (kilogramos <= stockAvena) {
+                                            producto = "Avena";
+                                            avenaKilosVenta += kilogramos;
+                                            totalAvena += kilogramos * precioAvenaVenta;
+                                            stockAvena -= kilogramos;
+                                            ventaValida = true;
+                                        } else {
+                                            System.out.println("No hay suficiente stock de Avena.");
+                                        }
+                                        break;
+                                    case 3:
+                                        if (kilogramos <= stockTrigo) {
+                                            producto = "Trigo";
+                                            trigoKilosVenta += kilogramos;
+                                            totalTrigo += kilogramos * precioTrigoVenta;
+                                            stockTrigo -= kilogramos;
+                                            ventaValida = true;
+                                        } else {
+                                            System.out.println("No hay suficiente stock de Trigo.");
+                                        }
+                                        break;
+                                    case 4:
+                                        if (kilogramos <= stockMaiz) {
+                                            producto = "Maiz";
+                                            maizKilosVenta += kilogramos;
+                                            totalMaiz += kilogramos * precioMaizVenta;
+                                            stockMaiz -= kilogramos;
+                                            ventaValida = true;
+                                        } else {
+                                            System.out.println("No hay suficiente stock de Maiz.");
+                                        }
+                                        break;
+                                }
+
+                                if (!ventaValida) {
+                                    System.out.println("No se realizo la venta por falta de stock.");
                                 }
                             }
 
@@ -172,7 +206,6 @@ public class Williams_Nasry_ProyectoTienda {
                             }
 
                         } while (respuesta.equals("si"));
-
 
                         System.out.println("****FACTURA*****");
                         if (azucarKilosVenta > 0) {
@@ -216,13 +249,12 @@ public class Williams_Nasry_ProyectoTienda {
                         System.out.println("TOTAL: L." + totalventa);
 
                         monto += totalventa;
-                        
+
                         System.out.println("Presione Enter para volver al Menu...");
                         lea.nextLine();
                         break;
-                        
-                // COMPRAS 
-                        
+
+                    // COMPRAS 
                     case 3:
                         do {
                             System.out.println("*** COMPRAS ***");
@@ -283,7 +315,7 @@ public class Williams_Nasry_ProyectoTienda {
                             }
                         } while (!productPurchaseValid);
 
-
+                        // Kilogramos
                         System.out.print("Ingrese la cantidad que comprara en Kilogramos: ");
                         try {
                             kilos = lea.nextDouble();
@@ -294,59 +326,82 @@ public class Williams_Nasry_ProyectoTienda {
                             kilos = 0;
                         }
 
-                        if (kilos > 0) {
+                        double precioUnitario = 0;
+                        if (comPro == 1) {
+                            nombreproductoCompra = "Azucar (Prov A)";
+                            precioUnitario = precioAzucarCompra;
+                        } else if (comPro == 2) {
+                            nombreproductoCompra = "Avena (Prov B)";
+                            precioUnitario = precioAvenaBCompra;
+                        } else if (comPro == 3) {
+                            nombreproductoCompra = "Avena (Prov C)";
+                            precioUnitario = precioAvenaCCompra;
+                        } else if (comPro == 4) {
+                            nombreproductoCompra = "Trigo (Prov B)";
+                            precioUnitario = precioTrigoCompra;
+                        } else if (comPro == 5) {
+                            nombreproductoCompra = "Maiz (Prov A)";
+                            precioUnitario = precioMaizCompra;
+                        }
+
+                        compraTotal = kilos * precioUnitario;
+
+                        if (monto >= compraTotal) {
+                            monto -= compraTotal;
+
+                            // Actualización de Kilos y de Stock
                             if (comPro == 1) {
-                                nombreproductoCompra = "Azucar (Prov A)";
                                 azucarKilosCompra += kilos;
-                                compraTotal += kilos * precioAzucarCompra;
+                                stockAzucar += kilos;
                             } else if (comPro == 2) {
-                                nombreproductoCompra = "Avena (Prov B)";
                                 avenabKilosCompra += kilos;
-                                compraTotal += kilos * precioAvenaBCompra;
+                                stockAvena += kilos;
                             } else if (comPro == 3) {
-                                nombreproductoCompra = "Avena (Prov C)";
                                 avenacKilosCompra += kilos;
-                                compraTotal += kilos * precioAvenaCCompra;
+                                stockAvena += kilos;
                             } else if (comPro == 4) {
-                                nombreproductoCompra = "Trigo (Prov B)";
                                 trigoKilosCompra += kilos;
-                                compraTotal += kilos * precioTrigoCompra;
+                                stockTrigo += kilos;
                             } else if (comPro == 5) {
-                                nombreproductoCompra = "Maiz (Prov A)";
                                 maizKilosCompra += kilos;
-                                compraTotal += kilos * precioMaizCompra;
+                                stockMaiz += kilos;
                             }
+                              
+                            System.out.println("*** Resumen de la Compra ***");
+                            System.out.println("Producto: " + nombreproductoCompra);
+                            System.out.println("Cantidad: " + kilos + " kg");
+                            System.out.println("Compra Total: L." + compraTotal);
+                        } else {
+                            System.out.println("No hay suficiente dinero en caja para realizar esta compra.");
                         }
-
-                        System.out.println("*** Resumen de la Compra ***");
-                        System.out.println("Producto: " + nombreproductoCompra);
-                        System.out.println("Cantidad: " + kilos + " kg");
-                        System.out.println("Compra Total: L." + compraTotal);
-                  
-                        if (monto > compraTotal){
-                        monto -= compraTotal;
-                        }else{
-                            System.out.println("Compra no se puede realizar, no hay suficiente dinero en caja.");
-                            break;
-                        }
-
-                        System.out.println("Presione Enter para volver al Menu...");
                         lea.nextLine();
-                        break;
+
                     // REPORTES
                     case 4:
                         System.out.println("*** REPORTES ***");
+                        System.out.println("Dinero Actual en caja: " + monto);
+                        System.out.println("Numero de Compras: ");
+                        System.out.println("Numero de Ventas: ");
+                        System.out.println("Volumen total de Compras: ");
+                        System.out.println("Volumen total de Ventas: ");
+                        System.out.println("Margen de Ganancias: ");
+                        System.out.println("Precio Promedio de Compra: ");
+                        System.out.println("Precio Promedio de Venta: ");
+                        System.out.println("Venta con Mayor Ganancia: ");
+                        System.out.println("Compra mas costosa: ");
+                        System.out.println("Producto mas vendido: ");
                         System.out.println("Presione Enter para volver al Menu...");
                         lea.nextLine();
                         break;
-                  // CIERRE DE CAJA
+                    // CIERRE DE CAJA
                     case 5:
                         System.out.println("*** CIERRE DE CAJA ***");
                         System.out.println("Monto final en caja: L." + monto);
                         System.out.println("Presione Enter para volver al Menu...");
                         lea.nextLine();
                         break;
-                   // SALIDA DE SISTEMA
+
+                    // SALIDA DE SISTEMA
                     case 6:
                         System.out.println("Salida del Sistema...");
                         break;
@@ -361,7 +416,3 @@ public class Williams_Nasry_ProyectoTienda {
         lea.close();
     }
 }
-
-
-
-
