@@ -7,14 +7,13 @@ public class Williams_Nasry_ProyectoTienda {
 
     public static void main(String[] args) {
         Scanner lea = new Scanner(System.in);
-        boolean montoValido = false;
-        double monto = 0, totalventa = 0;
-        String entrada, nombreproductoCompra = "", producto = "", tipocliente = "", proveedor ="";
+        boolean montoValido = false, compraValida= false;
+        String entrada, nombreproductoCompra = "", producto = "", tipocliente = "", proveedor = "";
         int opcionmenu = 0, codigo = 0;
-        double precioAzucarCompra = 25.0, precioAvenaBCompra = 20.0, precioAvenaCCompra = 22.0, precioTrigoCompra = 30.0, precioMaizCompra = 18.0,
-                kilos = 0, azucarKilosCompra = 0, avenabKilosCompra = 0, avenacKilosCompra = 0, trigoKilosCompra = 0, maizKilosCompra = 0, compraTotal = 0, kilogramos = 0,
-                precioAzucarVenta = 30.00, precioAvenaVenta = 25.00, precioTrigoVenta = 32.00, precioMaizVenta = 20.00, azucarKilosVenta = 0, avenaKilosVenta = 0,
-                trigoKilosVenta = 0, maizKilosVenta = 0, totalAzucar = 0, totalAvena = 0,
+        double monto = 0, totalventa = 0, precioAzucarCompra = 25.0, precioAvenaBCompra = 20.0, precioAvenaCCompra = 22.0, precioTrigoCompra = 30.0, precioMaizCompra = 18.0,
+                kilos = 0, azucarKilosCompra = 0, avenabKilosCompra = 0, avenacKilosCompra = 0, trigoKilosCompra = 0, maizKilosCompra = 0, compraTotal = 0,
+                kilogramos = 0, precioAzucarVenta = 30.00, precioAvenaVenta = 25.00, precioTrigoVenta = 32.00, precioMaizVenta = 20.00, azucarKilosVenta = 0,
+                avenaKilosVenta = 0, trigoKilosVenta = 0, maizKilosVenta = 0, totalAzucar = 0, totalAvena = 0,
                 totalTrigo = 0, totalMaiz = 0, stockAzucar = 0, stockAvena = 0, stockTrigo = 0, stockMaiz = 0;
 
         do {
@@ -39,113 +38,113 @@ public class Williams_Nasry_ProyectoTienda {
 
                     //CAJA
                     case 1:
-                      
+
                         System.out.println("*** CAJA ***");
-                        System.out.println("Su monto actual: " + monto);
-                       do {
-                        System.out.print("Ingrese el monto en HNL que anadira a Caja: ");
-                        try {
-                             double nuevoMonto = lea.nextDouble();
-                            if (nuevoMonto < 0) {
-                                System.out.print("Error, Valor Ingresado No Valido.");
-                            } else {
-                                monto += nuevoMonto;
-                                montoValido = true;
+                        System.out.printf("Su monto actual: L. %.2f\n", monto);
+                        do {
+                            System.out.print("Ingrese el monto en HNL que anadira a Caja: ");
+                            try {
+                                double nuevoMonto = lea.nextDouble();
+                                if (nuevoMonto < 0) {
+                                    System.out.print("Error, Valor Ingresado No Valido.");
+                                } else {
+                                    monto += nuevoMonto;
+                                    montoValido = true;
+                                }
+                            } catch (InputMismatchException e) {
+                                System.out.println("Error, Valor Ingresado No Valido. ");
+                                lea.nextLine();
                             }
-                        } catch (InputMismatchException e) {
-                            System.out.println("Error, Valor Ingresado No Valido. ");
-                            lea.nextLine();
-                        }
-                       }while (!montoValido);
+                        } while (!montoValido);
                         lea.nextLine();
-                        System.out.println("Su monto de caja actual es de: L." + monto);
+                        System.out.printf("Su monto de caja actual es de: L. %.2f\n", monto);
                         System.out.println("Presione Enter para volver al Menu...");
                         lea.nextLine();
                         break;
 
                     // VENTAS 
                     case 2:
+                     if (stockMaiz > 0 || stockAzucar > 0 || stockAvena > 0 || stockTrigo > 0){
+                        do {
+                            System.out.println();
+                            System.out.println("*** VENTAS ***");
+                            System.out.println();
+                            System.out.println(" *** Tipos de Cliente ***");
+                            System.out.println();
+                            System.out.println("Cliente Tipo A - Puede comprar cualquier producto. ");
+                            System.out.println("Cliente Tipo B - Solo puede comprar Azucar, Avena o Trigo");
+                            System.out.println("Cliente Tipo C - Solo puede comprar Maiz");
+                            System.out.println();
+                            System.out.println("Ingrese A si es un Cliente Tipo A");
+                            System.out.println("Ingrese B si es un Cliente Tipo B");
+                            System.out.println("Ingrese C si es un Cliente Tipo C");
+                            System.out.print("Ingrese el Tipo de Cliente que es dependiendo del producto: ");
 
-    do {
-        System.out.println();
-        System.out.println("*** VENTAS ***");
-        System.out.println();
-        System.out.println(" *** Tipos de Cliente ***");
-        System.out.println();
-        System.out.println("Cliente Tipo A - Puede comprar cualquier producto. ");
-        System.out.println("Cliente Tipo B - Solo puede comprar Azucar, Avena o Trigo");
-        System.out.println("Cliente Tipo C - Solo puede comprar Maiz");
-        System.out.println();
-        System.out.println("Ingrese A si es un Cliente Tipo A");
-        System.out.println("Ingrese B si es un Cliente Tipo B");
-        System.out.println("Ingrese C si es un Cliente Tipo C");
-        System.out.print("Ingrese el Tipo de Cliente que es dependiendo del producto: ");
+                            tipocliente = lea.nextLine().toUpperCase();
 
-       tipocliente = lea.nextLine().toUpperCase();
+                            if (!tipocliente.equals("A") && !tipocliente.equals("B") && !tipocliente.equals("C")) {
+                                System.out.println("Error. Opcion no valida, vuelva a intentar.");
+                            }
 
-        if (!tipocliente.equals("A") && !tipocliente.equals("B") && !tipocliente.equals("C")) {
-            System.out.println("Error. Opcion no valida, vuelva a intentar.");
-        }
+                        } while (!tipocliente.equals("A") && !tipocliente.equals("B") && !tipocliente.equals("C"));
 
-    } while (!tipocliente.equals("A") && !tipocliente.equals("B") && !tipocliente.equals("C"));
+                        if (tipocliente.equals("A")) {
+                            System.out.println("Usted es: Cliente Tipo A");
+                        } else if (tipocliente.equals("B")) {
+                            System.out.println("Usted es: Cliente Tipo B");
+                        } else if (tipocliente.equals("C")) {
+                            System.out.println("Usted es: Cliente Tipo C");
+                        }
 
-    if (tipocliente.equals("A")) {
-        System.out.println("Usted es: Cliente Tipo A");
-    } else if (tipocliente.equals("B")) {
-        System.out.println("Usted es: Cliente Tipo B");
-    } else if (tipocliente.equals("C")) {
-        System.out.println("Usted es: Cliente Tipo C");
-    }
+                        String respuesta;
 
-    String respuesta;
+                        do {
+                            boolean productInputValid = false;
 
-    do {
-        boolean productInputValid = false;
+                            do {
+                                productInputValid = true;
+                                try {
+                                    System.out.println("Productos: ");
+                                    System.out.println("Codigo 1. Azucar - L.30");
+                                    System.out.println("Codigo 2. Avena - L.25");
+                                    System.out.println("Codigo 3. Trigo - L.32");
+                                    System.out.println("Codigo 4. Maiz - L.20");
+                                    System.out.print("Ingrese el codigo del producto: ");
+                                    codigo = lea.nextInt();
+                                    lea.nextLine();
 
-        do {
-            productInputValid = true;
-            try {
-                System.out.println("Productos: ");
-                System.out.println("Codigo 1. Azucar - L.30");
-                System.out.println("Codigo 2. Avena - L.25");
-                System.out.println("Codigo 3. Trigo - L.32");
-                System.out.println("Codigo 4. Maiz - L.20");
-                System.out.print("Ingrese el codigo del producto: ");
-                codigo = lea.nextInt();
-                lea.nextLine();
+                                    boolean clientProductMatch = false;
+                                    if (tipocliente.equals("A") && (codigo >= 1 && codigo <= 4)) {
+                                        clientProductMatch = true;
+                                    } else if (tipocliente.equals("B") && (codigo >= 1 && codigo <= 3)) {
+                                        clientProductMatch = true;
+                                    } else if (tipocliente.equals("C") && codigo == 4) {
+                                        clientProductMatch = true;
+                                    }
 
-                boolean clientProductMatch = false;
-                if (tipocliente.equals("A") && (codigo >= 1 && codigo <= 4)) {
-                    clientProductMatch = true;
-                } else if (tipocliente.equals("B") && (codigo >= 1 && codigo <= 3)) {
-                    clientProductMatch = true;
-                } else if (tipocliente.equals("C") && codigo == 4) {
-                    clientProductMatch = true;
-                }
+                                    if (!clientProductMatch) {
+                                        System.out.println("Error. El tipo de cliente no puede comprar este producto. Intente de nuevo.");
+                                        productInputValid = false;
+                                    }
 
-                if (!clientProductMatch) {
-                    System.out.println("Error. El tipo de cliente no puede comprar este producto. Intente de nuevo.");
-                    productInputValid = false;
-                }
+                                } catch (InputMismatchException e) {
+                                    System.out.println("Error. Codigo no valido. Por favor ingrese un numero.");
+                                    lea.nextLine();
+                                    productInputValid = false;
+                                }
+                            } while (!productInputValid);
 
-            } catch (InputMismatchException e) {
-                System.out.println("Error. Codigo no valido. Por favor ingrese un numero.");
-                lea.nextLine();
-                productInputValid = false;
-            }
-        } while (!productInputValid);
+                            System.out.print("Ingrese la cantidad en kilogramos que comprara: ");
+                            try {
+                                kilogramos = lea.nextDouble();
+                                lea.nextLine();
+                            } catch (InputMismatchException e) {
+                                System.out.println("Error. Cantidad en kilogramos no valida. Compra cancelada para este producto.");
+                                lea.nextLine();
+                                kilogramos = 0;
+                            }
 
-        System.out.print("Ingrese la cantidad en kilogramos que comprara: ");
-        try {
-            kilogramos = lea.nextDouble();
-            lea.nextLine();
-        } catch (InputMismatchException e) {
-            System.out.println("Error. Cantidad en kilogramos no valida. Compra cancelada para este producto.");
-            lea.nextLine();
-            kilogramos = 0;
-        }        
-                            
-//Kilogramos
+                       //KILOGRAMOS EN VENTAS
                             if (kilogramos > 0) {
                                 boolean ventaValida = false;
                                 switch (codigo) {
@@ -210,6 +209,8 @@ public class Williams_Nasry_ProyectoTienda {
 
                         } while (respuesta.equals("si"));
 
+                        //FACTURACIÓN DE VENTAS
+                  
                         System.out.println("****FACTURA*****");
                         if (azucarKilosVenta > 0) {
                             System.out.println("Azucar: " + azucarKilosVenta + "kg" + " - Total: L." + totalAzucar);
@@ -252,73 +253,73 @@ public class Williams_Nasry_ProyectoTienda {
                         System.out.println("TOTAL: L." + totalventa);
 
                         monto += totalventa;
-
+                        }else{
+                            System.out.println("Stock Vacio");
+                        }
+                     
                         System.out.println("Presione Enter para volver al Menu...");
                         lea.nextLine();
                         break;
 
                     // COMPRAS 
-                   case 3:
-    String proveedorStr = "";
+                    case 3:
+                        if (monto > 0){
+                        do {
+                            System.out.println("*** COMPRAS ***");
+                            System.out.println("*** Menú de Proveedores ***");
+                            System.out.println("A. Proveedor A: Vende Azúcar y Maíz.");
+                            System.out.println("B. Proveedor B: Vende Avena (L.20) y Trigo.");
+                            System.out.println("C. Proveedor C: Vende solamente Avena (L.22).");
+                            System.out.print("Ingrese la letra del proveedor (A, B o C): ");
 
-    // Selección de proveedor con letra
-    do {
-        System.out.println("*** COMPRAS ***");
-        System.out.println("*** Menú de Proveedores ***");
-        System.out.println("A. Proveedor A: Vende Azúcar y Maíz.");
-        System.out.println("B. Proveedor B: Vende Avena (L.20) y Trigo.");
-        System.out.println("C. Proveedor C: Vende solamente Avena (L.22).");
-        System.out.print("Ingrese la letra del proveedor (A, B o C): ");
+                            proveedor = lea.nextLine().toUpperCase();
 
-        proveedorStr = lea.nextLine().toUpperCase();
+                            if (!proveedor.equals("A") && !proveedor.equals("B") && !proveedor.equals("C")) {
+                                System.out.println("Error. Opción no válida. Ingrese A, B o C.");
+                            }
 
-        if (!proveedorStr.equals("A") && !proveedorStr.equals("B") && !proveedorStr.equals("C")) {
-            System.out.println("Error. Opción no válida. Ingrese A, B o C.");
-        }
+                        } while (!proveedor.equals("A") && !proveedor.equals("B") && !proveedor.equals("C"));
 
-    } while (!proveedorStr.equals("A") && !proveedorStr.equals("B") && !proveedorStr.equals("C"));
+                        // Menú de productos
+                        System.out.println("*** Menú de Productos a Comprar ***");
+                        System.out.println("Código 1. Azúcar - L. " + precioAzucarCompra);
+                        System.out.println("Código 2. Avena (Proveedor B) - L." + precioAvenaBCompra);
+                        System.out.println("Código 3. Avena (Proveedor C) - L." + precioAvenaCCompra);
+                        System.out.println("Código 4. Trigo - L." + precioTrigoCompra);
+                        System.out.println("Código 5. Maíz - L." + precioMaizCompra);
 
-    // Menú de productos
-    System.out.println("*** Menú de Productos a Comprar ***");
-    System.out.println("Código 1. Azúcar - L. " + precioAzucarCompra);
-    System.out.println("Código 2. Avena (Proveedor B) - L." + precioAvenaBCompra);
-    System.out.println("Código 3. Avena (Proveedor C) - L." + precioAvenaCCompra);
-    System.out.println("Código 4. Trigo - L." + precioTrigoCompra);
-    System.out.println("Código 5. Maíz - L." + precioMaizCompra);
+                        int comPro = 0;
+                        boolean productPurchaseValid = false;
 
-    int comPro = 0;
-    boolean productPurchaseValid = false;
+                        do {
+                            productPurchaseValid = true;
+                            System.out.print("Ingrese el código del producto que desea comprar: ");
+                            try {
+                                comPro = lea.nextInt();
+                                lea.nextLine();
 
-    do {
-        productPurchaseValid = true;
-        System.out.print("Ingrese el código del producto que desea comprar: ");
-        try {
-            comPro = lea.nextInt();
-            lea.nextLine();
+                               
 
-            boolean providerProductMatch = false;
+                                if (proveedor.equals("A") && (comPro == 1 || comPro == 5)) {
+                                    compraValida = true;
+                                    System.out.println("Ha indicado una compra de Proveedor A");
+                                } else if (proveedor.equals("B") && (comPro == 2 || comPro == 4)) {
+                                    compraValida = true;
+                                    System.out.println("Ha indicado una compra de Proveedor B");
+                                } else if (proveedor.equals("C") && comPro == 3) {
+                                    compraValida = true;
+                                    System.out.println("Ha indicado una compra de Proveedor C");
+                                } else {
+                                    System.out.println("Error: El proveedor seleccionado no vende dicho producto. Intente de nuevo.");
+                                    compraValida = false;
+                                }
 
-            if (proveedorStr.equals("A") && (comPro == 1 || comPro == 5)) {
-                providerProductMatch = true;
-                System.out.println("Ha indicado una compra de Proveedor A");
-            } else if (proveedorStr.equals("B") && (comPro == 2 || comPro == 4)) {
-                providerProductMatch = true;
-                System.out.println("Ha indicado una compra de Proveedor B");
-            } else if (proveedorStr.equals("C") && comPro == 3) {
-                providerProductMatch = true;
-                System.out.println("Ha indicado una compra de Proveedor C");
-            } else {
-                System.out.println("Error: El proveedor seleccionado no vende dicho producto. Intente de nuevo.");
-                productPurchaseValid = false;
-            }
-
-        } catch (InputMismatchException e) {
-            System.out.println("Error. Código de producto no válido. Por favor ingrese un número.");
-            lea.nextLine();
-            productPurchaseValid = false;
-        }
-    } while (!productPurchaseValid);
-    
+                            } catch (InputMismatchException e) {
+                                System.out.println("Error. Código de producto no válido. Por favor ingrese un número.");
+                                lea.nextLine();
+                                compraValida = false;
+                            }
+                        } while (!compraValida);
 
                         // Kilogramos
                         System.out.print("Ingrese la cantidad que comprara en Kilogramos: ");
@@ -371,16 +372,21 @@ public class Williams_Nasry_ProyectoTienda {
                                 maizKilosCompra += kilos;
                                 stockMaiz += kilos;
                             }
-                              
-                            System.out.println("*** Resumen de la Compra ***");
+
+                            System.out.println("*** FACTURA ***");
                             System.out.println("Producto: " + nombreproductoCompra);
                             System.out.println("Cantidad: " + kilos + " kg");
                             System.out.println("Compra Total: L." + compraTotal);
                         } else {
                             System.out.println("No hay suficiente dinero en caja para realizar esta compra.");
                         }
-                        lea.nextLine();
-
+                      
+                        }else{
+                            System.out.println("Caja Vacia, Ingrese un monto para poder comprar producto y almacenar stock.");
+                        }
+                        System.out.println("Presione Enter para volver al Menu...");
+                        lea.nextLine(); 
+                        break;
                     // REPORTES
                     case 4:
                         System.out.println("*** REPORTES ***");
