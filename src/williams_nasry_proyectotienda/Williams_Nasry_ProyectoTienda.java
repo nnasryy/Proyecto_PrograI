@@ -222,7 +222,7 @@ public class Williams_Nasry_ProyectoTienda {
                             }
                                 
                            montoConDescuento = subtotal - descuentoAplicado;
-                           totalventa = montoConDescuento;
+                           totalventa = montoConDescuento*1.07;
                                 
                                 if (totalventa > 0){
                                     System.out.println("*** Factura ***");
@@ -241,9 +241,10 @@ public class Williams_Nasry_ProyectoTienda {
                                     System.out.println();
                                     System.out.println("Subtotal: L." + subtotal);
                                     System.out.println("Descuento aplicado: L." + descuentoAplicado);
-                                    System.out.println("Total (con ISV) L. " + totalventa);
+                                    System.out.println("Total (con ISV): L. " + totalventa);
                                     monto += totalventa;
                                     ventas++;
+                                    volumenVentas = volumenVentas + totalventa;
                                 }else{
                                     System.out.println("No hay productos que facturar.");
                                 }
@@ -373,6 +374,7 @@ public class Williams_Nasry_ProyectoTienda {
                                 System.out.println("Cantidad: " + kilos + " kg");
                                 System.out.println("Compra Total: L." + compraTotal);
                                 compras++;
+                                volumenCompras = volumenCompras + compraTotal;
                                }else{
                                    System.out.println("No hay producto que facturar. ");
                                }
@@ -388,18 +390,18 @@ public class Williams_Nasry_ProyectoTienda {
                         break;
                     // REPORTES
                     case 4:
-                        System.out.println("====== REPORTES ======*");
+                        System.out.println("====== REPORTES ======");
                         System.out.println("Dinero Actual en caja: " + monto);
                         System.out.println("Numero de Compras: "+ compras);
                         System.out.println("Numero de Ventas: "+ ventas);
-                        System.out.println("Volumen total de Compras: ");
-                        System.out.println("Volumen total de Ventas: ");
-                        System.out.println("Margen de Ganancias: ");
-                        System.out.println("Valor Promedio de Compra: ");
-                        System.out.println("Valor Promedio de Venta: ");
+                        System.out.println("Volumen total de Compras: "+ volumenCompras );
+                        System.out.println("Volumen total de Ventas: " + volumenVentas );
+                        System.out.println("Margen de Ganancias: " + (volumenVentas-volumenCompras));
+                        System.out.println("Valor Promedio de Compra: "+(volumenCompras/compras));
+                        System.out.println("Valor Promedio de Venta: "+(volumenVentas/ventas));
                         System.out.println("Venta con Mayor Ganancia: ");
                         System.out.println("Compra mas costosa: ");
-                        System.out.println("Producto mas vendido: ");
+                        System.out.println("Producto Estrella: ");
                         System.out.println("Presione Enter para volver al Menu...");
                         lea.nextLine();
                         break;
@@ -421,8 +423,7 @@ public class Williams_Nasry_ProyectoTienda {
                 System.out.println("Error: debe ingresar solo un numero del 1 al 6.");
             }
 
-            }
-            while (opcionmenu != 6);
+            } while (opcionmenu != 6);
 
             lea.close();
         }
