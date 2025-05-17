@@ -9,12 +9,12 @@ public class Williams_Nasry_ProyectoTienda {
         Scanner lea = new Scanner(System.in);
         boolean montoValido = false, compraValida = false;
         String entrada, nombreproductoCompra = "", producto = "", tipocliente = "", proveedor = "";
-        int opcionmenu = 0, codigo = 0;
+        int opcionmenu = 0, codigo = 0, compras = 0, ventas = 0;
         double monto = 0, totalventa = 0, precioAzucarCompra = 25.0, precioAvenaBCompra = 20.0, precioAvenaCCompra = 22.0, precioTrigoCompra = 30.0, precioMaizCompra = 18.0,
                 kilos = 0, azucarKilosCompra = 0, avenabKilosCompra = 0, avenacKilosCompra = 0, trigoKilosCompra = 0, maizKilosCompra = 0, compraTotal = 0,
                 kilogramos = 0, precioAzucarVenta = 30.00, precioAvenaVenta = 25.00, precioTrigoVenta = 32.00, precioMaizVenta = 20.00, azucarKilosVenta = 0,
                 avenaKilosVenta = 0, trigoKilosVenta = 0, maizKilosVenta = 0, totalAzucar = 0, totalAvena = 0,
-                totalTrigo = 0, totalMaiz = 0, stockAzucar = 0, stockAvena = 0, stockTrigo = 0, stockMaiz = 0;
+                totalTrigo = 0, totalMaiz = 0, stockAzucar = 0, stockAvena = 0, stockTrigo = 0, stockMaiz = 0, volumenVentas =0, volumenCompras=0;
 
         do {
             System.out.println("**** MENU ****");
@@ -40,9 +40,9 @@ public class Williams_Nasry_ProyectoTienda {
                     case 1:
 
                         System.out.println("*** CAJA ***");
-                        System.out.printf("Su monto actual: L. %.2f", monto);
+                        System.out.println("Su monto actual: " + monto);
                         do {
-                            System.out.print("Ingrese el monto en HNL que anadira a Caja: ");
+                            System.out.printf("Ingrese el monto en HNL que anadira a Caja: ");
                             try {
                                 double nuevoMonto = lea.nextDouble();
                                 if (nuevoMonto < 0) {
@@ -57,7 +57,7 @@ public class Williams_Nasry_ProyectoTienda {
                             }
                         } while (!montoValido);
                         lea.nextLine();
-                        System.out.printf("Su monto de caja actual es de: L. %.2f", monto);
+                        System.out.println("Su monto de caja actual es de: L." +monto);
                         System.out.println("Presione Enter para volver al Menu...");
                         lea.nextLine();
                         break;
@@ -243,6 +243,7 @@ public class Williams_Nasry_ProyectoTienda {
                                     System.out.println("Descuento aplicado: L." + descuentoAplicado);
                                     System.out.println("Total (con ISV) L. " + totalventa);
                                     monto += totalventa;
+                                    ventas++;
                                 }else{
                                     System.out.println("No hay productos que facturar.");
                                 }
@@ -284,10 +285,10 @@ public class Williams_Nasry_ProyectoTienda {
                             System.out.println("Código 5. Maíz - L." + precioMaizCompra);
 
                             int comPro = 0;
-                            boolean productPurchaseValid = false;
+                            boolean validaciondeproducto = false;
 
                             do {
-                                productPurchaseValid = true;
+                                validaciondeproducto = true;
                                 System.out.print("Ingrese el código del producto que desea comprar: ");
                                 try {
                                     comPro = lea.nextInt();
@@ -365,11 +366,16 @@ public class Williams_Nasry_ProyectoTienda {
                                     maizKilosCompra += kilos;
                                     stockMaiz += kilos;
                                 }
-
+                                 
+                               if (kilos > 0){
                                 System.out.println("*** FACTURA ***");
                                 System.out.println("Producto: " + nombreproductoCompra);
                                 System.out.println("Cantidad: " + kilos + " kg");
                                 System.out.println("Compra Total: L." + compraTotal);
+                                compras++;
+                               }else{
+                                   System.out.println("No hay producto que facturar. ");
+                               }
                             } else {
                                 System.out.println("No hay suficiente dinero en caja para realizar esta compra.");
                             }
@@ -382,15 +388,15 @@ public class Williams_Nasry_ProyectoTienda {
                         break;
                     // REPORTES
                     case 4:
-                        System.out.println("*** REPORTES ***");
+                        System.out.println("====== REPORTES ======*");
                         System.out.println("Dinero Actual en caja: " + monto);
-                        System.out.println("Numero de Compras: ");
-                        System.out.println("Numero de Ventas: ");
+                        System.out.println("Numero de Compras: "+ compras);
+                        System.out.println("Numero de Ventas: "+ ventas);
                         System.out.println("Volumen total de Compras: ");
                         System.out.println("Volumen total de Ventas: ");
                         System.out.println("Margen de Ganancias: ");
-                        System.out.println("Precio Promedio de Compra: ");
-                        System.out.println("Precio Promedio de Venta: ");
+                        System.out.println("Valor Promedio de Compra: ");
+                        System.out.println("Valor Promedio de Venta: ");
                         System.out.println("Venta con Mayor Ganancia: ");
                         System.out.println("Compra mas costosa: ");
                         System.out.println("Producto mas vendido: ");
@@ -399,7 +405,7 @@ public class Williams_Nasry_ProyectoTienda {
                         break;
                     // CIERRE DE CAJA
                     case 5:
-                        System.out.println("*** CIERRE DE CAJA ***");
+                        System.out.println("====== CIERRE DE CAJA ======");
                         System.out.println("Monto final en caja: L." + monto);
                         System.out.println("Presione Enter para volver al Menu...");
                         lea.nextLine();
