@@ -7,14 +7,15 @@ public class Williams_Nasry_ProyectoTienda {
 
     public static void main(String[] args) {
         Scanner lea = new Scanner(System.in);
-        boolean montoValido = false, compraValida = false;
+        boolean montoValido = false, compraValida = false, cajacerrada = false, depositovalido = false;
         String entrada, nombreproductoCompra = "", producto = "", tipocliente = "", proveedor = "";
         int opcionmenu = 0, codigo = 0, compras = 0, ventas = 0;
         double monto = 0, totalventa = 0, precioAzucarCompra = 25.0, precioAvenaBCompra = 20.0, precioAvenaCCompra = 22.0, precioTrigoCompra = 30.0, precioMaizCompra = 18.0,
                 kilos = 0, azucarKilosCompra = 0, avenabKilosCompra = 0, avenacKilosCompra = 0, trigoKilosCompra = 0, maizKilosCompra = 0, compraTotal = 0,
                 kilogramos = 0, precioAzucarVenta = 30.00, precioAvenaVenta = 25.00, precioTrigoVenta = 32.00, precioMaizVenta = 20.00, azucarKilosVenta = 0,
                 avenaKilosVenta = 0, trigoKilosVenta = 0, maizKilosVenta = 0, totalAzucar = 0, totalAvena = 0,
-                totalTrigo = 0, totalMaiz = 0, stockAzucar = 0, stockAvena = 0, stockTrigo = 0, stockMaiz = 0, volumenVentas =0, volumenCompras=0;
+                totalTrigo = 0, totalMaiz = 0, stockAzucar = 0, stockAvena = 0, stockTrigo = 0, stockMaiz = 0, volumenVentas = 0, volumenCompras = 0, maxdepositar = 0,
+                gananciaTotal = 0;
 
         double compraMasCostosa = 0;
         String productoCompraMasCostosa = "";
@@ -50,6 +51,10 @@ public class Williams_Nasry_ProyectoTienda {
 
                     //CAJA
                     case 1:
+                      
+                        
+                        
+                        
                         System.out.println();
                         System.out.println("==== CAJA ====");
                         System.out.println("Su monto actual: " + monto);
@@ -69,13 +74,19 @@ public class Williams_Nasry_ProyectoTienda {
                             }
                         } while (!montoValido);
                         lea.nextLine();
-                        System.out.println("Su monto de caja actual es de: L." +monto);
+                        System.out.println("Su monto de caja actual es de: L." + monto);
                         System.out.println("Presione Enter para volver al Menu...");
                         lea.nextLine();
+                        
                         break;
 
                     // VENTAS
                     case 2:
+                        if (cajacerrada) {
+                            System.out.println("No se puede realizar esta opcion. La caja esta cerrada.");
+                            break;
+                        }
+
                         totalAzucar = 0;
                         totalAvena = 0;
                         totalTrigo = 0;
@@ -247,52 +258,51 @@ public class Williams_Nasry_ProyectoTienda {
 
                             } while (respuesta.equals("si"));
 
-
                             //FACTURACIÓN DE VENTAS
                             double subtotal = totalAzucar + totalAvena + totalTrigo + totalMaiz;
                             double descuentoAplicado = 0;
                             double montoConDescuento = 0;
 
                             if (subtotal >= 5000) {
-                            descuentoAplicado = subtotal * 0.10;
-                            System.out.println("Tu Compra Aplica al 10% de Descuento");
-                        } else if (subtotal >= 1000) {
-                            descuentoAplicado = subtotal * 0.05;
-                            System.out.println("Tu Compra Aplica al 5% de Descuento");
-                        } else {
-                            System.out.println("No Aplica Descuento");
-                            descuentoAplicado = 0;
-                        }
+                                descuentoAplicado = subtotal * 0.10;
+                                System.out.println("Tu Compra Aplica al 10% de Descuento");
+                            } else if (subtotal >= 1000) {
+                                descuentoAplicado = subtotal * 0.05;
+                                System.out.println("Tu Compra Aplica al 5% de Descuento");
+                            } else {
+                                System.out.println("No Aplica Descuento");
+                                descuentoAplicado = 0;
+                            }
 
                             montoConDescuento = subtotal - descuentoAplicado;
-                            totalventa = montoConDescuento*1.07;
+                            totalventa = montoConDescuento * 1.07;
 
-                            if (totalventa > 0){
+                            if (totalventa > 0) {
                                 System.out.println();
                                 System.out.println("==== FACTURA ====");
-                                if (azucarKilosVenta > 0){
-                                    System.out.println("Azucar (L.30/1kg): "+ azucarKilosVenta + "kg" +"  - Total: L." + totalAzucar);
+                                if (azucarKilosVenta > 0) {
+                                    System.out.println("Azucar (L.30/1kg): " + azucarKilosVenta + "kg" + "  - Total: L." + totalAzucar);
                                 }
-                                if (avenaKilosVenta > 0){
-                                    System.out.println("Avena (L.25/1kg): "+ avenaKilosVenta + "kg"+" - Total: L." + totalAvena);
+                                if (avenaKilosVenta > 0) {
+                                    System.out.println("Avena (L.25/1kg): " + avenaKilosVenta + "kg" + " - Total: L." + totalAvena);
                                 }
-                                if (trigoKilosVenta > 0){
-                                    System.out.println("Trigo(L.32/1kg):" + trigoKilosVenta + "kg" +"- Total: L." + totalTrigo);
+                                if (trigoKilosVenta > 0) {
+                                    System.out.println("Trigo(L.32/1kg):" + trigoKilosVenta + "kg" + "- Total: L." + totalTrigo);
                                 }
-                                if (maizKilosVenta > 0){
+                                if (maizKilosVenta > 0) {
                                     System.out.println("Maiz(L.20/1kg):" + maizKilosVenta + "kg" + "- Total: L." + totalMaiz);
                                 }
                                 System.out.println();
                                 System.out.println("Subtotal: L." + subtotal);
                                 System.out.println("Descuento aplicado: L." + descuentoAplicado);
-                                System.out.printf("Total (con ISV): L. %.2f\n" , totalventa);
+                                System.out.printf("Total (con ISV): L. %.2f\n", totalventa);
                                 monto += totalventa;
                                 ventas++;
                                 volumenVentas = volumenVentas + totalventa;
-                            }else{
+                            } else {
                                 System.out.println("No hay productos que facturar.");
                             }
-                         } else {
+                        } else {
                             System.out.println("Stock Vacio");
                         }
 
@@ -302,6 +312,10 @@ public class Williams_Nasry_ProyectoTienda {
 
                     // COMPRAS
                     case 3:
+                        if (cajacerrada) {
+                            System.out.println("No se puede realizar esta opcion. La caja esta cerrada.");
+                            break;
+                        }
                         if (monto > 0) {
                             do {
                                 System.out.println();
@@ -355,165 +369,197 @@ public class Williams_Nasry_ProyectoTienda {
                                     }
 
                                 } catch (InputMismatchException e) {
-                                   System.out.println("Error. Codigo de producto no valido. Por favor ingrese un numero.");
-                                        lea.nextLine();
-                                        compraValida = false;
-                                    }
-                                } while (!compraValida);
-
-                                // Kilogramos
-                                System.out.print("Ingrese la cantidad que comprara en Kilogramos: ");
-                                try {
-                                    kilos = lea.nextDouble();
+                                    System.out.println("Error. Codigo de producto no valido. Por favor ingrese un numero.");
                                     lea.nextLine();
-                                } catch (InputMismatchException e) {
-                                    System.out.println("Error. Cantidad en kilogramos no valida. Compra cancelada para este producto.");
-                                    lea.nextLine();
-                                    kilos = 0;
+                                    compraValida = false;
                                 }
+                            } while (!compraValida);
 
-                                double precioUnitario = 0;
+                            // Kilogramos
+                            System.out.print("Ingrese la cantidad que comprara en Kilogramos: ");
+                            try {
+                                kilos = lea.nextDouble();
+                                lea.nextLine();
+                            } catch (InputMismatchException e) {
+                                System.out.println("Error. Cantidad en kilogramos no valida. Compra cancelada para este producto.");
+                                lea.nextLine();
+                                kilos = 0;
+                            }
+
+                            double precioUnitario = 0;
+                            if (comPro == 1) {
+                                nombreproductoCompra = "Azucar (Proveedor A)";
+                                precioUnitario = precioAzucarCompra;
+                            } else if (comPro == 2) {
+                                nombreproductoCompra = "Avena (Proveedor B)";
+                                precioUnitario = precioAvenaBCompra;
+                            } else if (comPro == 3) {
+                                nombreproductoCompra = "Avena (Proveedor C)";
+                                precioUnitario = precioAvenaCCompra;
+                            } else if (comPro == 4) {
+                                nombreproductoCompra = "Trigo (Proveedor B)";
+                                precioUnitario = precioTrigoCompra;
+                            } else if (comPro == 5) {
+                                nombreproductoCompra = "Maiz (Proveedor A)";
+                                precioUnitario = precioMaizCompra;
+                            }
+
+                            compraTotal = kilos * precioUnitario;
+
+                            if (monto >= compraTotal) {
+                                monto -= compraTotal;
+
+                                // Actualizacion de Kilos y de Stock
                                 if (comPro == 1) {
-                                    nombreproductoCompra = "Azucar (Proveedor A)";
-                                    precioUnitario = precioAzucarCompra;
+                                    azucarKilosCompra += kilos;
+                                    stockAzucar += kilos;
                                 } else if (comPro == 2) {
-                                    nombreproductoCompra = "Avena (Proveedor B)";
-                                    precioUnitario = precioAvenaBCompra;
+                                    avenabKilosCompra += kilos;
+                                    stockAvena += kilos;
                                 } else if (comPro == 3) {
-                                    nombreproductoCompra = "Avena (Proveedor C)";
-                                    precioUnitario = precioAvenaCCompra;
+                                    avenacKilosCompra += kilos;
+                                    stockAvena += kilos;
                                 } else if (comPro == 4) {
-                                    nombreproductoCompra = "Trigo (Proveedor B)";
-                                    precioUnitario = precioTrigoCompra;
+                                    trigoKilosCompra += kilos;
+                                    stockTrigo += kilos;
                                 } else if (comPro == 5) {
-                                    nombreproductoCompra = "Maiz (Proveedor A)";
-                                    precioUnitario = precioMaizCompra;
+                                    maizKilosCompra += kilos;
+                                    stockMaiz += kilos;
                                 }
 
-                                compraTotal = kilos * precioUnitario;
-
-                                if (monto >= compraTotal) {
-                                    monto -= compraTotal;
-
-                                    // Actualizacion de Kilos y de Stock
-                                    if (comPro == 1) {
-                                        azucarKilosCompra += kilos;
-                                        stockAzucar += kilos;
-                                    } else if (comPro == 2) {
-                                        avenabKilosCompra += kilos;
-                                        stockAvena += kilos;
-                                    } else if (comPro == 3) {
-                                        avenacKilosCompra += kilos;
-                                        stockAvena += kilos;
-                                    } else if (comPro == 4) {
-                                        trigoKilosCompra += kilos;
-                                        stockTrigo += kilos;
-                                    } else if (comPro == 5) {
-                                        maizKilosCompra += kilos;
-                                        stockMaiz += kilos;
-                                    }
-
-                                    if (kilos > 0){
-                                        System.out.println();
-                                        System.out.println("==== FACTURA ====");
-                                        System.out.println("Producto: " + nombreproductoCompra);
-                                        System.out.println("Cantidad: " + kilos + " kg");
-                                        System.out.println("Compra Total: L." + compraTotal);
-                                        compras++;
-                                        volumenCompras = volumenCompras + compraTotal;
-                                        if (compraTotal > compraMasCostosa) {
-                                            compraMasCostosa = compraTotal;
-                                            productoCompraMasCostosa = nombreproductoCompra;
-                                        }
-                                    }else{
-                                        System.out.println("No hay producto que facturar. ");
+                                if (kilos > 0) {
+                                    System.out.println();
+                                    System.out.println("==== FACTURA ====");
+                                    System.out.println("Producto: " + nombreproductoCompra);
+                                    System.out.println("Cantidad: " + kilos + " kg");
+                                    System.out.println("Compra Total: L." + compraTotal);
+                                    compras++;
+                                    volumenCompras = volumenCompras + compraTotal;
+                                    if (compraTotal > compraMasCostosa) {
+                                        compraMasCostosa = compraTotal;
+                                        productoCompraMasCostosa = nombreproductoCompra;
                                     }
                                 } else {
-                                    System.out.println("No hay suficiente dinero en caja para realizar esta compra.");
+                                    System.out.println("No hay producto que facturar. ");
                                 }
+                            } else {
+                                System.out.println("No hay suficiente dinero en caja para realizar esta compra.");
+                            }
 
-                            } else {
-                                System.out.println("Caja Vacia, Ingrese un monto para poder comprar producto y almacenar stock.");
-                            }
-                            System.out.println("Presione Enter para volver al Menu...");
-                            lea.nextLine();
-                            break;
-                        // REPORTES
-                        case 4:
-                            System.out.println();
-                            System.out.println("====== REPORTES ======");
-                            System.out.println("Dinero Actual en caja: " + monto);
-                            System.out.println("Numero de Compras: "+ compras);
-                            System.out.println("Numero de Ventas: "+ ventas);
-                            System.out.println("Volumen total de Compras: "+ volumenCompras );
-                            System.out.println("Volumen total de Ventas: " + volumenVentas );
-                            System.out.println("Margen de Ganancias: " + (volumenVentas-volumenCompras));
-                            if (compras > 0) {
-                                System.out.println("Valor Promedio de Compra: " + (volumenCompras / compras));
-                            } else {
-                                System.out.println("Valor Promedio de Compra: 0");
-                            }
-                            if (ventas > 0) {
-                                System.out.println("Valor Promedio de Venta: " + (volumenVentas / ventas));
-                            } else {
-                                System.out.println("Valor Promedio de Venta: 0");
-                            }
-                            
-                            //
-                          if (!productoVentaMayorGanancia.equals("")){
+                        } else {
+                            System.out.println("Caja Vacia, Ingrese un monto para poder comprar producto y almacenar stock.");
+                        }
+                        System.out.println("Presione Enter para volver al Menu...");
+                        lea.nextLine();
+                        break;
+                    // REPORTES
+                    case 4:
+                        System.out.println();
+                        System.out.println("====== REPORTES ======");
+                        System.out.println("Dinero Actual en caja: " + monto);
+                        System.out.println("Numero de Compras: " + compras);
+                        System.out.println("Numero de Ventas: " + ventas);
+                        System.out.println("Volumen total de Compras: " + volumenCompras);
+                        System.out.println("Volumen total de Ventas: " + volumenVentas);
+                        System.out.println("Margen de Ganancias: " + (volumenVentas - volumenCompras));
+                        if (compras > 0) {
+                            System.out.println("Valor Promedio de Compra: " + (volumenCompras / compras));
+                        } else {
+                            System.out.println("Valor Promedio de Compra: 0");
+                        }
+                        if (ventas > 0) {
+                            System.out.println("Valor Promedio de Venta: " + (volumenVentas / ventas));
+                        } else {
+                            System.out.println("Valor Promedio de Venta: 0");
+                        }
+
+                        //
+                        if (!productoVentaMayorGanancia.equals("")) {
                             System.out.println("Venta con Mayor Ganancia: " + productoVentaMayorGanancia + " - L." + String.format("%.2f", ventaMayorGanancia));
-                          }else{
-                              System.out.println("Venta con Mayor Ganancia: No se han hecho ventas todavia.");
-                          }
-                            //
-                          if (!productoCompraMasCostosa.equals("")){
+                        } else {
+                            System.out.println("Venta con Mayor Ganancia: No se han hecho ventas todavia.");
+                        }
+                        //
+                        if (!productoCompraMasCostosa.equals("")) {
                             System.out.println("Compra mas costosa: " + productoCompraMasCostosa + " - L." + String.format("%.2f", compraMasCostosa));
-                          }else{
-                              System.out.println("Compra mas costosa: No se han hecho compras todavia.");
-                          }
-                          
-                            if (cantidadAzucarVendida > maxVentasProducto) {
-                                maxVentasProducto = cantidadAzucarVendida;
-                                productoEstrella = "Azucar";
-                            }
-                            if (cantidadAvenaVendida > maxVentasProducto) {
-                                maxVentasProducto = cantidadAvenaVendida;
-                                productoEstrella = "Avena";
-                            }
-                            if (cantidadTrigoVendida > maxVentasProducto) {
-                                maxVentasProducto = cantidadTrigoVendida;
-                                productoEstrella = "Trigo";
-                            }
-                            if (cantidadMaizVendida > maxVentasProducto) {
-                                maxVentasProducto = cantidadMaizVendida;
-                                productoEstrella = "Maiz";
-                            }
-                            System.out.println("Producto Estrella: " + productoEstrella);
-                            System.out.println("==================================");
-                            System.out.println("Presione Enter para volver al Menu...");
-                            lea.nextLine();
-                            break;
-                        // CIERRE DE CAJA
-                        case 5:
-                            System.out.println();
-                            System.out.println("====== CIERRE DE CAJA ======");
-                            System.out.println("Monto final en caja: L." + monto);
-                            System.out.println("Presione Enter para volver al Menu...");
-                            lea.nextLine();
-                            break;
+                        } else {
+                            System.out.println("Compra mas costosa: No se han hecho compras todavia.");
+                        }
 
-                        // SALIDA DE SISTEMA
-                        case 6:
-                            System.out.println("Salida del Sistema...");
+                        if (cantidadAzucarVendida > maxVentasProducto) {
+                            maxVentasProducto = cantidadAzucarVendida;
+                            productoEstrella = "Azucar";
+                        }
+                        if (cantidadAvenaVendida > maxVentasProducto) {
+                            maxVentasProducto = cantidadAvenaVendida;
+                            productoEstrella = "Avena";
+                        }
+                        if (cantidadTrigoVendida > maxVentasProducto) {
+                            maxVentasProducto = cantidadTrigoVendida;
+                            productoEstrella = "Trigo";
+                        }
+                        if (cantidadMaizVendida > maxVentasProducto) {
+                            maxVentasProducto = cantidadMaizVendida;
+                            productoEstrella = "Maiz";
+                        }
+                        System.out.println("Producto Estrella: " + productoEstrella);
+                        System.out.println("==================================");
+                        System.out.println("Presione Enter para volver al Menu...");
+                        lea.nextLine();
+                        break;
+                    // CIERRE DE CAJA
+                    case 5:
+                        if (cajacerrada) {
+                            System.out.println("La caja ya está cerrada.");
                             break;
-                    }
+                        }
 
-                } else {
-                    System.out.println("Error: debe ingresar solo un numero del 1 al 6.");
+                        System.out.println("Ganancia total del día: " + gananciaTotal);
+                        System.out.println("Efectivo actual en caja: " + monto);
+
+                        double maxDeposito = monto * 0.60;
+                        System.out.println("Puede depositar hasta un máximo de: " + maxDeposito);
+
+                        double deposito = 0;
+                        boolean depositoValido = false;
+
+                        do {
+                            System.out.print("Ingrese cuánto desea depositar: ");
+                            String entradaDeposito = lea.nextLine(); 
+
+                            try {
+                                deposito = Double.parseDouble(entradaDeposito); 
+
+                                if (deposito >= 0 && deposito <= maxDeposito) {
+                                    depositoValido = true;
+                                } else {
+                                    System.out.println("Error: no puede depositar esta cantidad.");
+                                }
+                            } catch (NumberFormatException e) {
+                                System.out.println("Debe ingresar un numero valido.");
+                            }
+
+                        } while (!depositoValido);
+
+                        monto -= deposito;
+                        System.out.println("Deposito exitoso. Efectivo restante en caja: " + monto);
+
+                        cajacerrada = true;
+                        System.out.println("La caja ha sido cerrada. No puede hacer ventas ni compras hasta abrirla.");
+                        break;
+
+                    // SALIDA DE SISTEMA
+                    case 6:
+                        System.out.println("Salida del Sistema...");
+                        break;
                 }
 
-            } while (opcionmenu != 6);
+            } else {
+                System.out.println("Error: debe ingresar solo un numero del 1 al 6.");
+            }
 
-            lea.close();
-        }
+        } while (opcionmenu != 6);
+
+        lea.close();
     }
+}
