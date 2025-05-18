@@ -24,7 +24,7 @@ public class Williams_Nasry_ProyectoTienda {
         int cantidadAvenaVendida = 0;
         int cantidadTrigoVendida = 0;
         int cantidadMaizVendida = 0;
-        String productoEstrella = "";
+        String productoEstrella = "Ninguno";
         int maxVentasProducto = 0;
 
         do {
@@ -76,6 +76,14 @@ public class Williams_Nasry_ProyectoTienda {
 
                     // VENTAS
                     case 2:
+                        totalAzucar = 0;
+                        totalAvena = 0;
+                        totalTrigo = 0;
+                        totalMaiz = 0;
+                        azucarKilosVenta = 0;
+                        avenaKilosVenta = 0;
+                        trigoKilosVenta = 0;
+                        maizKilosVenta = 0;
                         if (stockMaiz > 0 || stockAzucar > 0 || stockAvena > 0 || stockTrigo > 0) {
                             do {
                                 System.out.println();
@@ -277,7 +285,7 @@ public class Williams_Nasry_ProyectoTienda {
                                 System.out.println();
                                 System.out.println("Subtotal: L." + subtotal);
                                 System.out.println("Descuento aplicado: L." + descuentoAplicado);
-                                System.out.printf("Total (con ISV): L. %2.f\n" , totalventa);
+                                System.out.printf("Total (con ISV): L. %.2f\n" , totalventa);
                                 monto += totalventa;
                                 ventas++;
                                 volumenVentas = volumenVentas + totalventa;
@@ -432,6 +440,7 @@ public class Williams_Nasry_ProyectoTienda {
                             break;
                         // REPORTES
                         case 4:
+                            System.out.println();
                             System.out.println("====== REPORTES ======");
                             System.out.println("Dinero Actual en caja: " + monto);
                             System.out.println("Numero de Compras: "+ compras);
@@ -449,9 +458,20 @@ public class Williams_Nasry_ProyectoTienda {
                             } else {
                                 System.out.println("Valor Promedio de Venta: 0");
                             }
+                            
+                            //
+                          if (!productoVentaMayorGanancia.equals("")){
                             System.out.println("Venta con Mayor Ganancia: " + productoVentaMayorGanancia + " - L." + String.format("%.2f", ventaMayorGanancia));
+                          }else{
+                              System.out.println("Venta con Mayor Ganancia: No se han hecho ventas todavia.");
+                          }
+                            //
+                          if (!productoCompraMasCostosa.equals("")){
                             System.out.println("Compra mas costosa: " + productoCompraMasCostosa + " - L." + String.format("%.2f", compraMasCostosa));
-
+                          }else{
+                              System.out.println("Compra mas costosa: No se han hecho compras todavia.");
+                          }
+                          
                             if (cantidadAzucarVendida > maxVentasProducto) {
                                 maxVentasProducto = cantidadAzucarVendida;
                                 productoEstrella = "Azucar";
@@ -469,6 +489,7 @@ public class Williams_Nasry_ProyectoTienda {
                                 productoEstrella = "Maiz";
                             }
                             System.out.println("Producto Estrella: " + productoEstrella);
+                            System.out.println("==================================");
                             System.out.println("Presione Enter para volver al Menu...");
                             lea.nextLine();
                             break;
