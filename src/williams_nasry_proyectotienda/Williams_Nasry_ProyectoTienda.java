@@ -17,7 +17,8 @@ public class Williams_Nasry_ProyectoTienda {
                 totalTrigo = 0, totalMaiz = 0, stockAzucar = 0, stockAvena = 0, stockTrigo = 0, stockMaiz = 0, volumenVentas =0, volumenCompras=0;
 
         do {
-            System.out.println("**** MENU ****");
+            System.out.println();
+            System.out.println("==== MENU ====");
             System.out.println("1. Abrir Caja");
             System.out.println("2. Ventas");
             System.out.println("3. Compras");
@@ -38,8 +39,8 @@ public class Williams_Nasry_ProyectoTienda {
 
                     //CAJA
                     case 1:
-
-                        System.out.println("*** CAJA ***");
+                        System.out.println();
+                        System.out.println("==== CAJA ====");
                         System.out.println("Su monto actual: " + monto);
                         do {
                             System.out.printf("Ingrese el monto en HNL que anadira a Caja: ");
@@ -67,7 +68,7 @@ public class Williams_Nasry_ProyectoTienda {
                         if (stockMaiz > 0 || stockAzucar > 0 || stockAvena > 0 || stockTrigo > 0) {
                             do {
                                 System.out.println();
-                                System.out.println("*** VENTAS ***");
+                                System.out.println("==== VENTAS ====");
                                 System.out.println();
                                 System.out.println(" *** Tipos de Cliente ***");
                                 System.out.println();
@@ -89,10 +90,13 @@ public class Williams_Nasry_ProyectoTienda {
                             } while (!tipocliente.equals("A") && !tipocliente.equals("B") && !tipocliente.equals("C"));
 
                             if (tipocliente.equals("A")) {
+                                System.out.println();
                                 System.out.println("Usted es: Cliente Tipo A");
                             } else if (tipocliente.equals("B")) {
+                                System.out.println();
                                 System.out.println("Usted es: Cliente Tipo B");
                             } else if (tipocliente.equals("C")) {
+                                System.out.println();
                                 System.out.println("Usted es: Cliente Tipo C");
                             }
 
@@ -104,7 +108,8 @@ public class Williams_Nasry_ProyectoTienda {
                                 do {
                                     productInputValid = true;
                                     try {
-                                        System.out.println("Productos: ");
+                                        System.out.println();
+                                        System.out.println("==== PRODUCTOS ==== ");
                                         System.out.println("Codigo 1. Azucar - L.30");
                                         System.out.println("Codigo 2. Avena - L.25");
                                         System.out.println("Codigo 3. Trigo - L.32");
@@ -225,7 +230,8 @@ public class Williams_Nasry_ProyectoTienda {
                            totalventa = montoConDescuento*1.07;
                                 
                                 if (totalventa > 0){
-                                    System.out.println("*** Factura ***");
+                                    System.out.println();
+                                    System.out.println("==== FACTURA ====");
                                     if (azucarKilosVenta > 0){
                                         System.out.println("Azucar (L.30/1kg): "+ azucarKilosVenta + "kg" +"  - Total: L." + totalAzucar);
                                     }
@@ -241,7 +247,7 @@ public class Williams_Nasry_ProyectoTienda {
                                     System.out.println();
                                     System.out.println("Subtotal: L." + subtotal);
                                     System.out.println("Descuento aplicado: L." + descuentoAplicado);
-                                    System.out.println("Total (con ISV): L. " + totalventa);
+                                    System.out.printf("Total (con ISV): L. %2.f\n" , totalventa);
                                     monto += totalventa;
                                     ventas++;
                                     volumenVentas = volumenVentas + totalventa;
@@ -262,28 +268,31 @@ public class Williams_Nasry_ProyectoTienda {
                 case 3:
                         if (monto > 0) {
                             do {
-                                System.out.println("*** COMPRAS ***");
-                                System.out.println("*** Menú de Proveedores ***");
-                                System.out.println("A. Proveedor A: Vende Azúcar y Maíz.");
+                                System.out.println();
+                                System.out.println("==== COMPRAS ====");
+                                System.out.println("*** Menu de Proveedores ***");
+                                System.out.println("A. Proveedor A: Vende Azucar y Maiz.");
                                 System.out.println("B. Proveedor B: Vende Avena (L.20) y Trigo.");
                                 System.out.println("C. Proveedor C: Vende solamente Avena (L.22).");
+                                System.out.println();
                                 System.out.print("Ingrese la letra del proveedor (A, B o C): ");
 
                                 proveedor = lea.nextLine().toUpperCase();
 
                                 if (!proveedor.equals("A") && !proveedor.equals("B") && !proveedor.equals("C")) {
-                                    System.out.println("Error. Opción no válida. Ingrese A, B o C.");
+                                    System.out.println("Error. Opcion no valida. Ingrese A, B o C.");
                                 }
 
                             } while (!proveedor.equals("A") && !proveedor.equals("B") && !proveedor.equals("C"));
 
                             // Menú de productos
-                            System.out.println("*** Menú de Productos a Comprar ***");
-                            System.out.println("Código 1. Azúcar - L. " + precioAzucarCompra);
+                            System.out.println("==== Menu de Productos a Comprar ====");
+                            System.out.println("Código 1. Azucar - L. " + precioAzucarCompra);
                             System.out.println("Código 2. Avena (Proveedor B) - L." + precioAvenaBCompra);
                             System.out.println("Código 3. Avena (Proveedor C) - L." + precioAvenaCCompra);
                             System.out.println("Código 4. Trigo - L." + precioTrigoCompra);
-                            System.out.println("Código 5. Maíz - L." + precioMaizCompra);
+                            System.out.println("Código 5. Maiz - L." + precioMaizCompra);
+                            System.out.println();
 
                             int comPro = 0;
                             boolean validaciondeproducto = false;
@@ -310,7 +319,7 @@ public class Williams_Nasry_ProyectoTienda {
                                     }
 
                                 } catch (InputMismatchException e) {
-                                    System.out.println("Error. Código de producto no válido. Por favor ingrese un número.");
+                                    System.out.println("Error. Codigo de producto no válido. Por favor ingrese un número.");
                                     lea.nextLine();
                                     compraValida = false;
                                 }
@@ -329,19 +338,19 @@ public class Williams_Nasry_ProyectoTienda {
 
                             double precioUnitario = 0;
                             if (comPro == 1) {
-                                nombreproductoCompra = "Azucar (Prov A)";
+                                nombreproductoCompra = "Azucar (Proveedor A)";
                                 precioUnitario = precioAzucarCompra;
                             } else if (comPro == 2) {
-                                nombreproductoCompra = "Avena (Prov B)";
+                                nombreproductoCompra = "Avena (Proveedor B)";
                                 precioUnitario = precioAvenaBCompra;
                             } else if (comPro == 3) {
-                                nombreproductoCompra = "Avena (Prov C)";
+                                nombreproductoCompra = "Avena (Proveedor C)";
                                 precioUnitario = precioAvenaCCompra;
                             } else if (comPro == 4) {
-                                nombreproductoCompra = "Trigo (Prov B)";
+                                nombreproductoCompra = "Trigo (Proveedor B)";
                                 precioUnitario = precioTrigoCompra;
                             } else if (comPro == 5) {
-                                nombreproductoCompra = "Maiz (Prov A)";
+                                nombreproductoCompra = "Maiz (Proveedor A)";
                                 precioUnitario = precioMaizCompra;
                             }
 
@@ -369,7 +378,8 @@ public class Williams_Nasry_ProyectoTienda {
                                 }
                                  
                                if (kilos > 0){
-                                System.out.println("*** FACTURA ***");
+                                   System.out.println();
+                                System.out.println("==== FACTURA ====");
                                 System.out.println("Producto: " + nombreproductoCompra);
                                 System.out.println("Cantidad: " + kilos + " kg");
                                 System.out.println("Compra Total: L." + compraTotal);
@@ -407,6 +417,7 @@ public class Williams_Nasry_ProyectoTienda {
                         break;
                     // CIERRE DE CAJA
                     case 5:
+                        System.out.println();
                         System.out.println("====== CIERRE DE CAJA ======");
                         System.out.println("Monto final en caja: L." + monto);
                         System.out.println("Presione Enter para volver al Menu...");
