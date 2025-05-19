@@ -18,6 +18,7 @@ public class Williams_Nasry_ProyectoTienda {
                 stockMaiz = 0, volumenVentas = 0, volumenCompras = 0, maxdepositar = 0, gananciaTotal = 0, compraMasCostosa = 0, ventaMayorGanancia = 0;
 
         
+                System.out.println("============== MENU DE OPCIONES ==============");
         do {
             System.out.println();
             System.out.println("===== MENU =====");
@@ -132,6 +133,7 @@ public class Williams_Nasry_ProyectoTienda {
                                 do {
                                     productInputValid = true;
                                     try {
+                                        System.out.println();
                                         System.out.println("*** Stock disponible a la venta ***");
                                         System.out.printf("Azucar: %.2f kg\n", stockAzucar);
                                         System.out.printf("Avena:  %.2f kg\n" , stockAvena);
@@ -306,7 +308,7 @@ public class Williams_Nasry_ProyectoTienda {
 
                             if (totalventa > 0) {
                                 System.out.println();
-                                System.out.println("===== FACTURA =====");
+                System.out.println("============== FACTURA ==============");
                               
                                 if (azucarKilosVenta > 0) {
                                     System.out.printf("Azucar (L.30/1kg): %.2f\n" , azucarKilosVenta , "kg" , "  - Total: L." + totalAzucar);
@@ -372,6 +374,7 @@ public class Williams_Nasry_ProyectoTienda {
                             } while (!proveedor.equals("A") && !proveedor.equals("B") && !proveedor.equals("C"));
 
                             // Menu de productos
+                            System.out.println();
                             System.out.println("===== Menu de Productos a Comprar =====");
                             System.out.println("Codigo 1. Azucar - L. " + precioAzucarCompra);
                             System.out.println("Codigo 2. Avena (Proveedor B) - L." + precioAvenaBCompra);
@@ -492,7 +495,7 @@ public class Williams_Nasry_ProyectoTienda {
 
                                 if (kilos > 0) {
                                     System.out.println();
-                                    System.out.println("===== FACTURA =====");
+                System.out.println("============== FACTURA ==============");
                                     System.out.println("Producto: " + nombreproductoCompra);
                                     System.out.printf("Cantidad: %.2f\n " , kilos , " kg");
                                     System.out.println();
@@ -580,6 +583,7 @@ public class Williams_Nasry_ProyectoTienda {
                             System.out.println("La caja ya esta cerrada. Debe abrirla para continuar.");
                             break;
                         }
+                        System.out.println();
                         System.out.println("===== CIERRE DE CAJA =====");
                         System.out.printf("Ganancia total del dia: L. %.2f\n" , gananciaTotal);
                         System.out.printf("Efectivo en caja: L. %.2f\n" , monto);
@@ -617,7 +621,7 @@ public class Williams_Nasry_ProyectoTienda {
                         monto -= deposito;
                         cajacerrada = true;
 
-                        // CONTADORES REINICIADOS
+                        // CONTADORES EN 0
                         volumenVentas = 0;
                         volumenCompras = 0;
                         gananciaTotal = 0;
