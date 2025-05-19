@@ -8,29 +8,19 @@ public class Williams_Nasry_ProyectoTienda {
     public static void main(String[] args) {
         Scanner lea = new Scanner(System.in);
         boolean montoValido = false, compraValida = false, cajacerrada = false, depositovalido = false;
-        String entrada, nombreproductoCompra = "", producto = "", tipocliente = "", proveedor = "";
-        int opcionmenu = 0, codigo = 0, compras = 0, ventas = 0;
-        double monto = 0, totalventa = 0, precioAzucarCompra = 25.0, precioAvenaBCompra = 20.0, precioAvenaCCompra = 22.0, precioTrigoCompra = 30.0, precioMaizCompra = 18.0,
-                kilos = 0, azucarKilosCompra = 0, avenabKilosCompra = 0, avenacKilosCompra = 0, trigoKilosCompra = 0, maizKilosCompra = 0, compraTotal = 0,
-                kilogramos = 0, precioAzucarVenta = 30.00, precioAvenaVenta = 25.00, precioTrigoVenta = 32.00, precioMaizVenta = 20.00, azucarKilosVenta = 0,
-                avenaKilosVenta = 0, trigoKilosVenta = 0, maizKilosVenta = 0, totalAzucar = 0, totalAvena = 0,
-                totalTrigo = 0, totalMaiz = 0, stockAzucar = 0, stockAvena = 0, stockTrigo = 0, stockMaiz = 0, volumenVentas = 0, volumenCompras = 0, maxdepositar = 0,
-                gananciaTotal = 0;
+        String entrada, nombreproductoCompra = "", producto = "", tipocliente = "", proveedor = "", productoCompraMasCostosa = "", productoVentaMayorGanancia = "", 
+                productoEstrella = "Ninguno";
+        int opcionmenu = 0, codigo = 0, compras = 0, ventas = 0, cantidadAzucarVendida = 0, cantidadAvenaVendida = 0, cantidadTrigoVendida = 0, cantidadMaizVendida = 0,  maxVentasProducto = 0;
+        double monto = 0, totalventa = 0, precioAzucarCompra = 25.0, precioAvenaBCompra = 20.0, precioAvenaCCompra = 22.0, precioTrigoCompra = 30.0, 
+                precioMaizCompra = 18.0, kilos = 0, azucarKilosCompra = 0, avenabKilosCompra = 0, avenacKilosCompra = 0, trigoKilosCompra = 0, maizKilosCompra = 0,
+                compraTotal = 0, kilogramos = 0, precioAzucarVenta = 30.00, precioAvenaVenta = 25.00, precioTrigoVenta = 32.00, precioMaizVenta = 20.00, azucarKilosVenta = 0,
+                avenaKilosVenta = 0, trigoKilosVenta = 0, maizKilosVenta = 0, totalAzucar = 0, totalAvena = 0, totalTrigo = 0, totalMaiz = 0, stockAzucar = 0, stockAvena = 0, stockTrigo = 0, 
+                stockMaiz = 0, volumenVentas = 0, volumenCompras = 0, maxdepositar = 0, gananciaTotal = 0, compraMasCostosa = 0, ventaMayorGanancia = 0;
 
-        double compraMasCostosa = 0;
-        String productoCompraMasCostosa = "";
-        double ventaMayorGanancia = 0;
-        String productoVentaMayorGanancia = "";
-        int cantidadAzucarVendida = 0;
-        int cantidadAvenaVendida = 0;
-        int cantidadTrigoVendida = 0;
-        int cantidadMaizVendida = 0;
-        String productoEstrella = "Ninguno";
-        int maxVentasProducto = 0;
-
+        
         do {
             System.out.println();
-            System.out.println("==== MENU ====");
+            System.out.println("===== MENU =====");
             System.out.println("1. Abrir Caja");
             System.out.println("2. Ventas");
             System.out.println("3. Compras");
@@ -62,7 +52,7 @@ public class Williams_Nasry_ProyectoTienda {
                         }
 
                         System.out.println();
-                        System.out.println("==== CAJA ====");
+                        System.out.println("===== CAJA =====");
                         System.out.println("Su monto actual: " + monto);
                         do {
                             System.out.printf("Ingrese el monto en HNL que anadira a Caja: ");
@@ -79,7 +69,7 @@ public class Williams_Nasry_ProyectoTienda {
                                 System.out.println("Error, Valor Ingresado No Valido. ");
                             }
                         } while (!montoValido);
-                        System.out.println("Su monto de caja actual es de: L." + monto);
+                        System.out.printf("Su monto de caja actual es de: L.%.2f\n" , monto);
                         System.out.println("Presione Enter para volver al Menu...");
                         lea.nextLine();
                         break;
@@ -91,7 +81,6 @@ public class Williams_Nasry_ProyectoTienda {
                             System.out.println("No se puede realizar esta opcion. La caja esta cerrada.");
                             break;
                         }
-
                         totalAzucar = 0;
                         totalAvena = 0;
                         totalTrigo = 0;
@@ -105,7 +94,7 @@ public class Williams_Nasry_ProyectoTienda {
                                 System.out.println();
                                 System.out.println("==== VENTAS ====");
                                 System.out.println();
-                                System.out.println(" *** Tipos de Cliente ***");
+                                System.out.println("==== Tipos de Cliente ====");
                                 System.out.println();
                                 System.out.println("Cliente Tipo A - Puede comprar cualquier producto. ");
                                 System.out.println("Cliente Tipo B - Solo puede comprar Azucar, Avena o Trigo");
@@ -143,6 +132,11 @@ public class Williams_Nasry_ProyectoTienda {
                                 do {
                                     productInputValid = true;
                                     try {
+                                        System.out.println("*** Stock disponible a la venta ***");
+                                        System.out.printf("Azucar: %.2f kg\n", stockAzucar);
+                                        System.out.printf("Avena:  %.2f kg\n" , stockAvena);
+                                        System.out.printf("Trigo:  %.2f kg\n" , stockTrigo);
+                                        System.out.printf("Maiz:  %.2f kg\n" , stockMaiz);
                                         System.out.println();
                                         System.out.println("==== PRODUCTOS ==== ");
                                         System.out.println("Codigo 1. Azucar - L.30");
@@ -150,7 +144,22 @@ public class Williams_Nasry_ProyectoTienda {
                                         System.out.println("Codigo 3. Trigo - L.32");
                                         System.out.println("Codigo 4. Maiz - L.20");
                                         System.out.print("Ingrese el codigo del producto: ");
-                                        codigo = Integer.parseInt(lea.nextLine());
+                try {
+                boolean entradaValida = false;
+                while (!entradaValida) {
+                    try {
+                        codigo = lea.nextInt();
+                        lea.nextLine();
+                        entradaValida = true;
+                    } catch (InputMismatchException e) {
+                        System.out.println("Entrada invalida. Intente de nuevo.");
+                        lea.nextLine();
+                    }
+                }
+                } catch (InputMismatchException e) {
+                    System.out.println("Entrada invalida. Intente de nuevo.");
+                    lea.nextLine();
+                }
 
 
                                         boolean clientProductMatch = false;
@@ -175,7 +184,22 @@ public class Williams_Nasry_ProyectoTienda {
 
                                 System.out.print("Ingrese la cantidad en kilogramos que comprara: ");
                                 try {
-                                    kilogramos = Double.parseDouble(lea.nextLine());
+                try {
+                boolean entradaValida = false;
+                while (!entradaValida) {
+                    try {
+                        kilogramos = lea.nextDouble();
+                        lea.nextLine();
+                        entradaValida = true;
+                    } catch (InputMismatchException e) {
+                        System.out.println("Entrada invalida. Intente de nuevo.");
+                        lea.nextLine();
+                    }
+                }
+                } catch (InputMismatchException e) {
+                    System.out.println("Entrada invalida. Intente de nuevo.");
+                    lea.nextLine();
+                }
 
                                 } catch (NumberFormatException e) {
                                     System.out.println("Error. Cantidad en kilogramos no valida. Compra cancelada para este producto.");
@@ -195,7 +219,7 @@ public class Williams_Nasry_ProyectoTienda {
                                                 stockAzucar -= kilogramos;
                                                 ventaValida = true;
                                                 gananciaVenta = kilogramos * (precioAzucarVenta - precioAzucarCompra);
-                                                cantidadAzucarVendida += (int)kilogramos;
+                                                cantidadAzucarVendida += kilogramos;
                                             } else {
                                                 System.out.println("No hay suficiente stock de Azucar.");
                                             }
@@ -208,7 +232,7 @@ public class Williams_Nasry_ProyectoTienda {
                                                 stockAvena -= kilogramos;
                                                 ventaValida = true;
                                                 gananciaVenta = kilogramos * (precioAvenaVenta - precioAvenaBCompra);
-                                                cantidadAvenaVendida += (int)kilogramos;
+                                                cantidadAvenaVendida += kilogramos;
                                             } else {
                                                 System.out.println("No hay suficiente stock de Avena.");
                                             }
@@ -221,7 +245,7 @@ public class Williams_Nasry_ProyectoTienda {
                                                 stockTrigo -= kilogramos;
                                                 ventaValida = true;
                                                 gananciaVenta = kilogramos * (precioTrigoVenta - precioTrigoCompra);
-                                                cantidadTrigoVendida += (int)kilogramos;
+                                                cantidadTrigoVendida += kilogramos;
                                             } else {
                                                 System.out.println("No hay suficiente stock de Trigo.");
                                             }
@@ -234,7 +258,7 @@ public class Williams_Nasry_ProyectoTienda {
                                                 stockMaiz -= kilogramos;
                                                 ventaValida = true;
                                                 gananciaVenta = kilogramos * (precioMaizVenta - precioMaizCompra);
-                                                cantidadMaizVendida += (int)kilogramos;
+                                                cantidadMaizVendida += kilogramos;
                                             } else {
                                                 System.out.println("No hay suficiente stock de Maiz.");
                                             }
@@ -282,31 +306,32 @@ public class Williams_Nasry_ProyectoTienda {
 
                             if (totalventa > 0) {
                                 System.out.println();
-                                System.out.println("==== FACTURA ====");
+                                System.out.println("===== FACTURA =====");
                               
                                 if (azucarKilosVenta > 0) {
-                                    System.out.println("Azucar (L.30/1kg): " + azucarKilosVenta + "kg" + "  - Total: L." + totalAzucar);
+                                    System.out.printf("Azucar (L.30/1kg): %.2f\n" , azucarKilosVenta , "kg" , "  - Total: L." + totalAzucar);
                                 }
                                 if (avenaKilosVenta > 0) {
-                                    System.out.println("Avena (L.25/1kg): " + avenaKilosVenta + "kg" + " - Total: L." + totalAvena);
+                                    System.out.printf("Avena (L.25/1kg): %.2f\n" , avenaKilosVenta , "kg" , " - Total: L." + totalAvena);
                                 }
                                 if (trigoKilosVenta > 0) {
-                                    System.out.println("Trigo(L.32/1kg):" + trigoKilosVenta + "kg" + "- Total: L." + totalTrigo);
+                                    System.out.printf("Trigo(L.32/1kg): %.2f\n" , trigoKilosVenta , "kg" , "- Total: L." + totalTrigo);
                                 }
                                 if (maizKilosVenta > 0) {
-                                    System.out.println("Maiz(L.20/1kg):" + maizKilosVenta + "kg" + "- Total: L." + totalMaiz);
+                                    System.out.printf("Maiz(L.20/1kg): %.2f\n" , maizKilosVenta , "kg" , "- Total: L." + totalMaiz);
                                 }
                                
-                                System.out.println("Subtotal: L." + subtotal);
-                                System.out.println("Descuento aplicado: L." + descuentoAplicado);
-                                System.out.printf("Total (con ISV): L. %.2f\n", totalventa);
+                                System.out.printf("Subtotal: L.%.2f\n" , subtotal);
+                                System.out.printf("Descuento aplicado: L.%.2f\n" , descuentoAplicado);
+                                System.out.println();
+                                System.out.printf("Total (con ISV): L.%.2f\n", totalventa);
                                   System.out.println();
                                 System.out.println( "Descuentos a lo que podria aplicar: ");
                                 System.out.println("5% - Si su compra es mayor a L.1,000");
                                 System.out.println("10% - Si su compra es mayor a L.5,000");
-                                System.out.println("No aplica a descuento si su compra es mayor a L.1,000");
+                                System.out.println("*No aplica a descuento si su compra es menor a L.1,000");
                                 System.out.println();
-                                System.out.println("===============");
+                                System.out.println("===================");
                                 monto += totalventa;
                                 ventas++;
                                 volumenVentas = volumenVentas + totalventa;
@@ -330,7 +355,7 @@ public class Williams_Nasry_ProyectoTienda {
                         if (monto > 0) {
                             do {
                                 System.out.println();
-                                System.out.println("==== COMPRAS ====");
+                                System.out.println("===== COMPRAS =====");
                                 System.out.println("*** Menu de Proveedores ***");
                                 System.out.println("A. Proveedor A: Vende Azucar y Maiz.");
                                 System.out.println("B. Proveedor B: Vende Avena (L.20) y Trigo.");
@@ -347,7 +372,7 @@ public class Williams_Nasry_ProyectoTienda {
                             } while (!proveedor.equals("A") && !proveedor.equals("B") && !proveedor.equals("C"));
 
                             // Menu de productos
-                            System.out.println("==== Menu de Productos a Comprar ====");
+                            System.out.println("===== Menu de Productos a Comprar =====");
                             System.out.println("Codigo 1. Azucar - L. " + precioAzucarCompra);
                             System.out.println("Codigo 2. Avena (Proveedor B) - L." + precioAvenaBCompra);
                             System.out.println("Codigo 3. Avena (Proveedor C) - L." +precioAvenaCCompra);
@@ -362,7 +387,22 @@ public class Williams_Nasry_ProyectoTienda {
                                 validaciondeproducto = true;
                                 System.out.print("Ingrese el codigo del producto que desea comprar: ");
                                 try {
-                                    comPro = Integer.parseInt(lea.nextLine());
+                try {
+                boolean entradaValida = false;
+                while (!entradaValida) {
+                    try {
+                        comPro = lea.nextInt();
+                        lea.nextLine();
+                        entradaValida = true;
+                    } catch (InputMismatchException e) {
+                        System.out.println("Entrada invalida. Intente de nuevo.");
+                        lea.nextLine();
+                    }
+                }
+                } catch (InputMismatchException e) {
+                    System.out.println("Entrada invalida. Intente de nuevo.");
+                    lea.nextLine();
+                }
 
                                     if (proveedor.equals("A") && (comPro == 1 || comPro == 5)) {
                                         compraValida = true;
@@ -387,10 +427,25 @@ public class Williams_Nasry_ProyectoTienda {
                             // Kilogramos
                             System.out.print("Ingrese la cantidad que comprara en Kilogramos: ");
                             try {
-                                kilos = Double.parseDouble(lea.nextLine());
+                try {
+                boolean entradaValida = false;
+                while (!entradaValida) {
+                    try {
+                        kilos = lea.nextDouble();
+                        lea.nextLine();
+                        entradaValida = true;
+                    } catch (InputMismatchException e) {
+                        System.out.println("Entrada invalida. Intente de nuevo.");
+                        lea.nextLine();
+                    }
+                }
+                } catch (InputMismatchException e) {
+                    System.out.println("Entrada invalida. Intente de nuevo.");
+                    lea.nextLine();
+                }
 
                             } catch (NumberFormatException e) {
-                                System.out.println("Error. Cantidad en kilogramos no valida. Compra cancelada para este producto.");
+                                System.out.println("Error, Cantidad en kilogramos no valida. Compra cancelada para este producto.");
                                 kilos = 0;
                             }
 
@@ -437,11 +492,13 @@ public class Williams_Nasry_ProyectoTienda {
 
                                 if (kilos > 0) {
                                     System.out.println();
-                                    System.out.println("==== FACTURA ====");
+                                    System.out.println("===== FACTURA =====");
                                     System.out.println("Producto: " + nombreproductoCompra);
-                                    System.out.println("Cantidad: " + kilos + " kg");
-                                    System.out.println("Compra Total: L." + compraTotal);
-                                    System.out.println("=================");
+                                    System.out.printf("Cantidad: %.2f\n " , kilos , " kg");
+                                    System.out.println();
+                                    System.out.printf("Compra Total: L.%.2f\n" , compraTotal);
+                                    System.out.println();
+                                    System.out.println("==================");
                                     compras++;
                                     volumenCompras = volumenCompras + compraTotal;
                                     if (compraTotal > compraMasCostosa) {
@@ -465,25 +522,25 @@ public class Williams_Nasry_ProyectoTienda {
                     case 4:
                         System.out.println();
                         System.out.println("====== REPORTES ======");
-                        System.out.println("Dinero Actual en caja: " + monto);
+                        System.out.printf("Dinero Actual en caja: %.2f\n" , monto);
                         System.out.println("Numero de Compras: " + compras);
                         System.out.println("Numero de Ventas: " + ventas);
-                        System.out.println("Volumen total de Compras: " + volumenCompras);
-                        System.out.println("Volumen total de Ventas: " + volumenVentas);
-                        System.out.println("Margen de Ganancias: " + (volumenVentas - volumenCompras));
+                        System.out.printf("Volumen total de Compras: %.2f\n" , volumenCompras);
+                        System.out.printf("Volumen total de Ventas: %.2f\n" , volumenVentas);
+                        System.out.printf("Margen de Ganancias: %.2f\n" , (volumenVentas - volumenCompras));
                         if (compras > 0) {
-                            System.out.println("Valor Promedio de Compra: " + (volumenCompras / compras));
+                            System.out.printf("Valor Promedio de Compra: %.2f\n" , (volumenCompras / compras));
                         } else {
                             System.out.println("Valor Promedio de Compra: 0");
                         }
                         if (ventas > 0) {
-                            System.out.println("Valor Promedio de Venta: " + (volumenVentas / ventas));
+                            System.out.printf("Valor Promedio de Venta: %.2f\n" , (volumenVentas / ventas));
                         } else {
                             System.out.println("Valor Promedio de Venta: 0");
                         }
 
                         //
-                        if (!productoVentaMayorGanancia.equals("")) {
+                       if (!productoVentaMayorGanancia.equals("")) {
                             System.out.println("Venta con Mayor Ganancia: " + productoVentaMayorGanancia + " - L." + String.format("%.2f", ventaMayorGanancia));
                         } else {
                             System.out.println("Venta con Mayor Ganancia: No se han hecho ventas todavia.");
@@ -494,7 +551,7 @@ public class Williams_Nasry_ProyectoTienda {
                         } else {
                             System.out.println("Compra mas costosa: No se han hecho compras todavia.");
                         }
-
+                        
                         if (cantidadAzucarVendida > maxVentasProducto) {
                             maxVentasProducto = cantidadAzucarVendida;
                             productoEstrella = "Azucar";
@@ -523,16 +580,31 @@ public class Williams_Nasry_ProyectoTienda {
                             System.out.println("La caja ya esta cerrada. Debe abrirla para continuar.");
                             break;
                         }
-                        System.out.println("CIERRE DE CAJA:");
-                        System.out.println("Ganancia total del dia: L. " + gananciaTotal);
-                        System.out.println("Efectivo en caja: L. " + monto);
+                        System.out.println("===== CIERRE DE CAJA =====");
+                        System.out.printf("Ganancia total del dia: L. %.2f\n" , gananciaTotal);
+                        System.out.printf("Efectivo en caja: L. %.2f\n" , monto);
 
                         double maxDeposito = monto * 0.60;
                         double deposito = 0;
                         do {
-                            System.out.print("Ingrese la cantidad que desea depositar al banco (maximo L. " + maxDeposito + "): ");
+                            System.out.print("Ingrese la cantidad que desea depositar al banco (maximo L. " + String.format("%.2f", maxDeposito) + "): " );
                             try {
-                                deposito = Double.parseDouble(lea.nextLine());
+                try {
+                boolean entradaValida = false;
+                while (!entradaValida) {
+                    try {
+                        deposito = lea.nextDouble();
+                        lea.nextLine();
+                        entradaValida = true;
+                    } catch (InputMismatchException e) {
+                        System.out.println("Entrada invalida. Intente de nuevo.");
+                        lea.nextLine();
+                    }
+                }
+                } catch (InputMismatchException e) {
+                    System.out.println("Entrada invalida. Intente de nuevo.");
+                    lea.nextLine();
+                }
                                 if (deposito < 0 || deposito > maxDeposito) {
                                     System.out.println("Cantidad invalida. Intente de nuevo.");
                                 }
@@ -560,8 +632,8 @@ public class Williams_Nasry_ProyectoTienda {
                         ventaMayorGanancia = 0;
                         productoVentaMayorGanancia = "";
 
-                        System.out.println("Se depositaron L. " + deposito + " al banco.");
-                        System.out.println("Efectivo restante en caja para el siguiente dia: L. " + monto);
+                        System.out.printf("Se depositaron L.%.2f\n " , deposito , " al banco.");
+                        System.out.printf("Efectivo restante en caja para el siguiente dia: L. %.2f\n" , monto);
                         break;
 
 
