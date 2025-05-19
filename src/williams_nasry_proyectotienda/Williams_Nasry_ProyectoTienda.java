@@ -8,14 +8,17 @@ public class Williams_Nasry_ProyectoTienda {
     public static void main(String[] args) {
         Scanner lea = new Scanner(System.in);
         boolean montoValido = false, compraValida = false, cajacerrada = false, depositovalido = false;
-        String entrada, nombreproductoCompra = "", producto = "", tipocliente = "", proveedor = "", productoCompraMasCostosa = "", productoVentaMayorGanancia = "",
+        String entrada, nombreproductoCompra = "", producto = "", tipocliente = "", proveedor = "",
+                productoCompraMasCostosa = "", productoVentaMayorGanancia = "",
                 productoEstrella = "Ninguno";
-        int opcionmenu = 0, codigo = 0, compras = 0, ventas = 0, cantidadAzucarVendida = 0, cantidadAvenaVendida = 0, cantidadTrigoVendida = 0, cantidadMaizVendida = 0, maxVentasProducto = 0;
+        int opcionmenu = 0, codigo = 0, compras = 0, ventas = 0, cantidadAzucarVendida = 0, cantidadAvenaVendida = 0,
+                cantidadTrigoVendida = 0, cantidadMaizVendida = 0, maxVentasProducto = 0;
         double monto = 0, totalventa = 0, precioAzucarCompra = 25.0, precioAvenaBCompra = 20.0, precioAvenaCCompra = 22.0, precioTrigoCompra = 30.0,
                 precioMaizCompra = 18.0, kilos = 0, azucarKilosCompra = 0, avenabKilosCompra = 0, avenacKilosCompra = 0, trigoKilosCompra = 0, maizKilosCompra = 0,
-                compraTotal = 0, kilogramos = 0, precioAzucarVenta = 30.00, precioAvenaVenta = 25.00, precioTrigoVenta = 32.00, precioMaizVenta = 20.00, azucarKilosVenta = 0,
-                avenaKilosVenta = 0, trigoKilosVenta = 0, maizKilosVenta = 0, totalAzucar = 0, totalAvena = 0, totalTrigo = 0, totalMaiz = 0, stockAzucar = 0, stockAvena = 0, stockTrigo = 0,
-                stockMaiz = 0, volumenVentas = 0, volumenCompras = 0, maxdepositar = 0, gananciaTotal = 0, compraMasCostosa = 0, ventaMayorGanancia = 0;
+                compraTotal = 0, kilogramos = 0, precioAzucarVenta = 30.00, precioAvenaVenta = 25.00, precioTrigoVenta = 32.00, precioMaizVenta = 20.00,
+                azucarKilosVenta = 0, avenaKilosVenta = 0, trigoKilosVenta = 0, maizKilosVenta = 0, totalAzucar = 0, totalAvena = 0, totalTrigo = 0, totalMaiz = 0, stockAzucar = 0,
+                stockAvena = 0, stockTrigo = 0, stockMaiz = 0, volumenVentas = 0, volumenCompras = 0, maxdepositar = 0, gananciaTotal = 0, compraMasCostosa = 0,
+                ventaMayorGanancia = 0;
 
         System.out.println("============== MENU DE OPCIONES ==============");
         do {
@@ -522,8 +525,7 @@ public class Williams_Nasry_ProyectoTienda {
                         System.out.println();
                         System.out.println("====== REPORTES ======");
                         System.out.printf("Dinero Actual en caja: %.2f\n", monto);
-                        System.out.println("Numero de Compras: " + compras);
-                        System.out.println("Numero de Ventas: " + ventas);
+                        System.out.println("Numero de Compras: " + compras + ", Numero de Ventas: " + ventas);
                         System.out.printf("Volumen total de Compras: %.2f\n", volumenCompras);
                         System.out.printf("Volumen total de Ventas: %.2f\n", volumenVentas);
                         System.out.printf("Margen de Ganancias: %.2f\n", (volumenVentas - volumenCompras));
